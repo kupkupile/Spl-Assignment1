@@ -7,32 +7,22 @@
 
 class Customer{
 public:
-    Customer(std::string c_name, int c_id);
-
-	Customer(const std::string &name, const int id);
-
+	Customer(std::string c_name, int c_id);
 	virtual std::vector<int> order(const std::vector<Dish> &menu)=0;
-    virtual std::string toString() const = 0;
-
-	virtual std::string getName() const;
-
-	virtual int getId() const;
+	virtual std::string toString() const = 0;
+	std::string getName() const;
+	int getId() const;
 private:
-    const std::string name;
-    const int id
+	const std::string name;
+	const int id
 };
 
 
 class VegetarianCustomer : public Customer {
 public:
 	VegetarianCustomer(std::string name, int id);
-    std::vector<int> order(const std::vector<Dish> &menu);
-    std::string toString() const;
-
-	std::string getName() const override;
-
-	int getId() const override;
-
+	std::vector<int> order(const std::vector<Dish> &menu);
+	std::string toString() const;
 private:
 };
 
@@ -40,8 +30,8 @@ private:
 class CheapCustomer : public Customer {
 public:
 	CheapCustomer(std::string name, int id);
-    std::vector<int> order(const std::vector<Dish> &menu);
-    std::string toString() const;
+	std::vector<int> order(const std::vector<Dish> &menu);
+	std::string toString() const;
 private:
 };
 
@@ -49,17 +39,17 @@ private:
 class SpicyCustomer : public Customer {
 public:
 	SpicyCustomer(std::string name, int id);
-    std::vector<int> order(const std::vector<Dish> &menu);
-    std::string toString() const;
+	std::vector<int> order(const std::vector<Dish> &menu);
+	std::string toString() const;
 private:
 };
 
 
 class AlchoholicCustomer : public Customer {
 public:
-	AlchoholicCustomer(std::string name, int id)
-    std::vector<int> order(const std::vector<Dish> &menu);
-    std::string toString() const;
+	AlchoholicCustomer(std::string name, int id);
+	std::vector<int> order(const std::vector<Dish> &menu);
+	std::string toString() const;
 private:
 };
 
