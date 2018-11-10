@@ -26,9 +26,29 @@ private:
     //**********
 
     int customerindex;
-    OpenTable* createOpenTable(std::vector<std::string> vector);
+    OpenTable* createOpenTable(std::vector<std::string>& vector);
 
     Customer* creatCustomer(std::string name, std::string type);
+
+    Order *createOrder(std::vector<std::string>& tokens);
+
+    MoveCustomer *createMoveCustomer(std::vector<std::string>& tokens);
+
+    Close *creatCloseAction(std::vector<std::string>& tokens);
+
+    BaseAction *makeMeAnAction(std::vector<std::string>& tokens);
+
+    BaseAction *creatCloseAllAction(std::vector<std::string> &tokens);
+
+    BaseAction *createMenuAction(std::vector<std::string> &vector);
+
+    BaseAction *createStatusAction(std::vector<std::string> &tokens);
+
+    BaseAction *createLogAction(std::vector<std::string> &tokens);
+
+    BaseAction *createBackupAction(std::vector<std::string> &vector);
+
+    BaseAction *createRestoreAction(std::vector<std::string> &tokens);
 };
 
 #endif

@@ -60,11 +60,11 @@ void Restaurant::start() {
       }
       if(start != std::string::npos)
           tokens.push_back(input.substr(start));
-      if(tokens[0]=="open") {
-          OpenTable *openTable = createOpenTable(tokens);
-          openTable->act(*this);
-          actionsLog.push_back(openTable);
-      }
+
+      BaseAction* specificAction = makeMeAnAction(tokens);
+      specificAction->act(*this);
+      actionsLog.push_back(specificAction);
+
 
     }
 
@@ -90,7 +90,7 @@ std::vector<Dish> &Restaurant::getMenu() {
     return menu;
 }
 
-OpenTable* Restaurant::createOpenTable(std::vector<std::string> tokens) {
+OpenTable* Restaurant::createOpenTable(std::vector<std::string>& tokens) {
     int index = stoi(tokens[1]);
     vector<Customer*> customers;
     for (int i = 2; i < tokens.size(); ++i) {
@@ -123,5 +123,93 @@ Customer* Restaurant::creatCustomer(string name, string type) {
         return returnCust;
     }
 
+}
+
+Order *Restaurant::createOrder(std::vector<std::string>& tokens) {
+    int tableID = stoi(tokens[1]);
+    Order* ans = new Order(tableID);
+    return ans;
+}
+
+MoveCustomer *Restaurant::createMoveCustomer(std::vector<std::string>& tokens) {
+    int originID = stoi(tokens[1]);
+    int destID = stoi(tokens[2]);
+    int custID = stoi(tokens[3]);
+    MoveCustomer* ans = new MoveCustomer(originID,destID,custID);
+    return ans;
+
+}
+
+Close *Restaurant::creatCloseAction(std::vector<std::string>& tokens) {
+    int tableID = stoi(tokens[1]);
+    Close* ans = new Close(tableID);
+    return ans;
+}
+
+BaseAction *Restaurant::makeMeAnAction(std::vector<std::string> &tokens) {
+    BaseAction* ans;
+    if(tokens[0]=="open") {
+        ans = createOpenTable(tokens);
+    }
+    else if(tokens[0]=="order"){
+        ans = createOrder(tokens);
+    }
+    else if(tokens[0]=="move"){
+        ans = createMoveCustomer(tokens);
+     }
+    else if(tokens[0]=="close"){
+        ans = creatCloseAction(tokens);
+    }
+    else if(tokens[0]=="closeall"){
+        ans = creatCloseAllAction(tokens);
+    }
+    else if(tokens[0]=="menu"){
+        ans = createMenuAction(tokens);
+    }
+    else if(tokens[0]=="status"){
+        ans = createStatusAction(tokens);
+    }
+    else if(tokens[0]=="log"){
+        ans = createLogAction(tokens);
+    }
+    else if(tokens[0]=="backup"){
+        ans = createBackupAction(tokens);
+    }
+    else if(tokens[0]=="restore"){
+        ans = createRestoreAction(tokens);
+    }
+    else
+        return nullptr;
+    return ans;
+}
+
+BaseAction *Restaurant::creatCloseAllAction(std::vector<std::string> &tokens) {
+    CloseAll* ans = new CloseAll();
+    return ans;
+}
+
+BaseAction *Restaurant::createMenuAction(std::vector<std::string> &vector) {
+    PrintMenu* ans = new PrintMenu();
+    return ans;
+}
+
+BaseAction *Restaurant::createStatusAction(std::vector<std::string> &tokens) {
+    PrintTableStatus* ans = new PrintTableStatus(stoi(tokens[1]));
+    return ans;
+}
+
+BaseAction *Restaurant::createLogAction(std::vector<std::string> &tokens) {
+    PrintActionsLog* ans = new PrintActionsLog();
+    return ans;
+}
+
+BaseAction *Restaurant::createBackupAction(std::vector<std::string> &vector) {
+    BackupRestaurant* ans  = new BackupRestaurant();
+    return ans;
+}
+
+BaseAction *Restaurant::createRestoreAction(std::vector<std::string> &tokens) {
+    RestoreResturant* ans = new RestoreResturant();
+    return ans;
 }
 
