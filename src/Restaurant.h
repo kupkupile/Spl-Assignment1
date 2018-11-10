@@ -52,6 +52,12 @@ private:
     BaseAction *createBackupAction(std::vector<std::string> &vector);
 
     BaseAction *createRestoreAction(std::vector<std::string> &tokens);
+
+	int getNextValidLineIndex(const std::vector<std::string> &lines, int readIndex) const;
+
+	void createTables(int tables, std::string &tableConfigLine);
+
+    void createMenu(std::vector<std::string> lines, int readIndex);
 };
 
 #endif
