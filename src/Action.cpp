@@ -4,14 +4,15 @@
 
 #include "Action.h"
 #include "Table.h"
+#include "Restaurant.h"
 
 
-BaseAction::BaseAction(){
+BaseAction::BaseAction():status(PENDING) {
 
 }
 
 ActionStatus BaseAction::getStatus() const {
-    return COMPLETED;
+    return status;
 }
 
 void BaseAction::complete() {
@@ -19,16 +20,17 @@ void BaseAction::complete() {
 }
 
 void BaseAction::error(std::string errorMsg) {
+    this->errorMsg=errorMsg;
 
 }
 
 std::string BaseAction::getErrorMsg() const {
-    return std::__cxx11::string();
+    return errorMsg;
 }
 
 //*****************************************************************
 
-OpenTable::OpenTable(int id, std::vector<Customer *> &customersList): tableId(id) , customers(customersList),BaseAction.status(PENDING){
+OpenTable::OpenTable(int id, std::vector<Customer *> &customersList): tableId(id) , customers(customersList){
         error("Table does not exist or is already open");
 }
 // This method opens a new table for the list of customers, it needs to check 2 things:
@@ -37,10 +39,10 @@ OpenTable::OpenTable(int id, std::vector<Customer *> &customersList): tableId(id
 //3.this given table can hold the number of customers given.
 
 void OpenTable::act(Restaurant &restaurant) {
-    Table * tempTable(restaurant.getTable(id));
+ Table * tempTable = restaurant.getTable(tableId);
  if(tempTable != nullptr && !tempTable->isOpen() && tempTable->getCapacity() >= customers.size()-1)
  {
-   tempTable->openTable();for(int i=0;i<customers.size();i++){tempTable->addCustomer(customers[i]);BaseAction.status(COMPLETED);}
+   tempTable->openTable();for(int i=0;i<customers.size();i++){tempTable->addCustomer(customers[i]);this.BaseAction.status(COMPLETED);}
  }
  else
      {
