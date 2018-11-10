@@ -60,12 +60,22 @@ orderedAlready=false;
 std::vector<int> CheapCustomer::order(const std::vector<Dish> &menu) {
     int foodId = -1;
     int foodPrice;
-    for (int i = 0; i < menu.size(); i++) {
-        if ((foodId == -1 || (menu[i].getPrice() < foodPrice)) || (menu[i].getPrice() == foodPrice & foodId > menu[i].getId()))
-        {  foodId = menu[i].getId(); foodPrice = menu[i].getPrice();}
+    if(!orderedAlready) {
+        for (int i = 0; i < menu.size(); i++) {
+            if ((foodId == -1 || (menu[i].getPrice() < foodPrice)) ||
+                (menu[i].getPrice() == foodPrice & foodId > menu[i].getId())) {
+                foodId = menu[i].getId();
+                foodPrice = menu[i].getPrice();
+            }
+        }
+        orderedAlready=true;
+        return std::vector<int>(1,foodId);
     }
+    else
+    {
 
-    return std::vector<int>(1,foodId);
+        return std::vector<int>();
+    }
 }
 
 //yet to be implemented

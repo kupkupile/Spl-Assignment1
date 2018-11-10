@@ -1,9 +1,7 @@
 //
 // Created by amitk on 11/9/18.
 //
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
+
 #include <fstream>
 #include "Restaurant.h"
 #include <iostream>
@@ -20,20 +18,28 @@ Restaurant::Restaurant():open(),tables(),menu(),actionsLog() {
 }
 
 Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu(),actionsLog(),actionsLogStrings() {
-
-    std::ifstream in
-    input.open("configFile.txt")
-    bool g = in.is_open();
-    std::vector<string> lines;
+    open=false;
+    std::ifstream myFile;
+    myFile.open("/home//levletom//CLionProjects//SPL_Assignment1//configFile.txt");
+    std::vector<std::string> lines;
     std::string line;
-    while (std::getline(in, line))
-    {
-        std::istringstream iss(line);
-        lines.push_back(line);
 
+    if(myFile.is_open()){
+        while(getline(myFile,line)){
+            lines.push_back(line);
+        }
     }
 
-
+    tables.push_back(new Table(4));
+    tables.push_back(new Table(10));
+    tables.push_back((new Table(10)));
+    menu.push_back(Dish(1,"BEER",50,ALC));
+    menu.push_back(Dish(2,"Salad",40,VEG));
+    menu.push_back(Dish(3,"Water",10,BVG));
+    menu.push_back(Dish(4,"Wine",60,ALC));
+    menu.push_back(Dish(5,"Chili con carne",200,SPC));
+    open=false;
+    customerindex = 0;
 
 
 
