@@ -17,7 +17,7 @@ Restaurant::Restaurant():open(),tables(),menu(),actionsLog() {
 
 }
 
-Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu(),actionsLog() {
+Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu(),actionsLog(),actionsLogStrings() {
     /*open=false;
     std::ifstream myFile(configFilePath);
     std::vector<std::string> lines;
@@ -50,6 +50,7 @@ void Restaurant::start() {
     std::string input;
     while(open){
       getline(cin,input);
+      actionsLogStrings.push_back(input);
       std::vector<std::string> tokens;
       string delims = " ,";
       std::size_t start = input.find_first_not_of(delims), end = 0;
@@ -73,6 +74,10 @@ void Restaurant::start() {
 
 int Restaurant::getNumOfTables() const {
     return 0;
+}
+
+std::vector<std::string> Restaurant::getActionsLogStrings() {
+    return actionsLogStrings;
 }
 
 Table *Restaurant::getTable(int ind) {
@@ -99,6 +104,10 @@ OpenTable* Restaurant::createOpenTable(std::vector<std::string>& tokens) {
     }
    OpenTable* ans = new OpenTable(index,customers);
     return ans;
+}
+
+void Restaurant::close() {
+    open = false;
 }
 
 Customer* Restaurant::creatCustomer(string name, string type) {

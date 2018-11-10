@@ -112,7 +112,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
       for(int i=0;i<tempOrderlist.size();i++){
           src->getOrders().push_back(tempOrderlist[i]);
       }
-    std::vector<OrderPair>  tempOrderlist = src->getOrders();
+
     for(int i = 0;i<tempOrderlist.size();i++){
         if(tempOrderlist[i].first==customer->getId())
         {
@@ -142,6 +142,12 @@ void Close::act(Restaurant &restaurant) {
   if(table==nullptr||!table->isOpen()) {
       error("Table does not exist or is not open");
   }
+  else{
+      int bill = table->getBill();
+      table->closeTable();
+      cout<<"Table "<<tableId<<" was closed. Bill "<<bill<<"NIS"<<endl;
+      complete();
+  }
 
 }
 
@@ -156,7 +162,20 @@ CloseAll::CloseAll() {
 }
 
 void CloseAll::act(Restaurant &restaurant) {
+    int numOfTables = restaurant.getNumOfTables();
+    for(int i = 0;i<numOfTables;i++){
+        Table * table = restaurant.getTable(i);
+        if(table==nullptr||!table->isOpen()) {
 
+        }
+        else{
+            int bill = table->getBill();
+            table->closeTable();
+            cout<<"Table "<<i<<" was closed. Bill "<<bill<<"NIS"<<endl;
+        }
+    }
+    complete();
+    restaurant.close();
 }
 
 std::string CloseAll::toString() const {
@@ -199,7 +218,11 @@ PrintActionsLog::PrintActionsLog() {
 }
 
 void PrintActionsLog::act(Restaurant &restaurant) {
-
+    vector<string> actionLogStrings = restaurant.getActionsLogStrings();
+    vector<BaseAction*> actionsLog = restaurant.getActionsLog();
+    for(int i= 0; i<actionLogStrings.size()-1;i++){
+        cout<<actionLogStrings[i]<< " "<< actionsLog[i]->getStatus()<<endl;
+    }
 }
 
 std::string PrintActionsLog::toString() const {

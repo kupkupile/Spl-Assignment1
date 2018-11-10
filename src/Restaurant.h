@@ -16,13 +16,16 @@ public:
     int getNumOfTables() const;
     Table* getTable(int ind);
 	const std::vector<BaseAction*>& getActionsLog() const; // Return a reference to the history of actions
+	std::vector<std::string> getActionsLogStrings();
     std::vector<Dish>& getMenu();
+    void close();
 
 private:
     bool open;
     std::vector<Table*> tables;
     std::vector<Dish> menu;
     std::vector<BaseAction*> actionsLog;
+    std::vector<std::string> actionsLogStrings;
     //**********
 
     int customerindex;
