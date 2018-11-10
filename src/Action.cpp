@@ -191,7 +191,7 @@ PrintMenu::PrintMenu() {
 
 void PrintMenu::act(Restaurant &restaurant) {
    for(int i=0;i<restaurant.getMenu().size();i++){
-       cout<< restaurant.getMenu()[i].getName() + " " + "restaurant.getMenu()[i].getType()" + " " + "restaurant.getMenu()[i].getId()" << endl;
+       cout<< restaurant.getMenu()[i].getName() << " " << restaurant.getMenu()[i].getType() << " " << restaurant.getMenu()[i].getId() << endl;
    }
 }
 

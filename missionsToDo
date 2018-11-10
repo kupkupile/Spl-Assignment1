@@ -1,3 +1,6 @@
 1.Rule of 5: Table,Restaurant.
 2.Read from the configFile.
 3.Action : backup , restore backup
+4. print functions of all the actions.
+5. VEG customer : error
+6.
