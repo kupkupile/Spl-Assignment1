@@ -5,6 +5,7 @@
 #include "Action.h"
 #include "Table.h"
 #include "Restaurant.h"
+using namespace std;
 
 
 BaseAction::BaseAction():status(PENDING) {
@@ -43,7 +44,11 @@ void OpenTable::act(Restaurant &restaurant) {
  Table * tempTable = restaurant.getTable(tableId);
  if(tempTable != nullptr && !tempTable->isOpen() && tempTable->getCapacity() >= customers.size()-1)
  {
-   tempTable->openTable();for(int i=0;i<customers.size();i++){tempTable->addCustomer(customers[i]);this->complete();}
+   tempTable->openTable();
+   for(int i=0;i<customers.size();i++){
+       tempTable->addCustomer(customers[i]);
+       this->complete();
+   }
  }
  else
      {
@@ -95,7 +100,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
         if(tempOrderlist[i].first==customer->getId())
         {
             dst->getOrders().push_back(tempOrderlist[i]);
-            src->getOrders().erase(tempOrderlist.begin()+i);
+           // src.removeCustomersOrders(customerId);
         }
     }
   }
@@ -116,7 +121,11 @@ Close::Close(int id):tableId(id) {
 }
 
 void Close::act(Restaurant &restaurant) {
-  Table * toCloseTable(restaurant.getTable(tableId));
+  Table * table = restaurant.getTable(tableId);
+  if(table==nullptr||!table->isOpen()) {
+      error("Table does not exist or is not open");
+  }
+
 }
 
 std::string Close::toString() const {
