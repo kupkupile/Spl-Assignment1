@@ -23,6 +23,12 @@ private:
     std::vector<Table*> tables;
     std::vector<Dish> menu;
     std::vector<BaseAction*> actionsLog;
+    //**********
+
+    int customerindex;
+    OpenTable* createOpenTable(std::vector<std::string> vector);
+
+    Customer* creatCustomer(std::string name, std::string type);
 };
 
 #endif

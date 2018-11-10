@@ -18,6 +18,7 @@ void Table::addCustomer(Customer *customer) {
 }
 
 //removes customer with id=id, if not in table, does nothing.
+//might need to add delete of customer.
 void Table::removeCustomer(int id) {
     for(int i =0;i<customersList.size();i++){
         if(customersList[i]->getId()==id){
@@ -62,7 +63,7 @@ void Table::order(const std::vector<Dish> &menu) {
 void Table::openTable() {
     open=true;
 }
-
+//delte customers
 void Table::closeTable() {
     open = false;
 }
