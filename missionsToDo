@@ -1,6 +1,9 @@
 1.Rule of 5: Table,Restaurant.
-2.Read from the configFile.
-3.Action : backup , restore backup
-4. print functions of all the actions.
-5. VEG customer : error
+Table - tomer.
+Restaurant - amit.
+Customer clone - amit
+3.Action : backup-amit , restore backup-tomer
+4. print functions of all the actions - each his own
+5. VEG customer : error - amit
+check all customer strategies.
 6.
