@@ -16,7 +16,7 @@ ActionStatus BaseAction::getStatus() const {
 }
 
 void BaseAction::complete() {
-
+    status = COMPLETED;
 }
 
 void BaseAction::error(std::string errorMsg) {
@@ -25,6 +25,7 @@ void BaseAction::error(std::string errorMsg) {
 }
 
 std::string BaseAction::getErrorMsg() const {
+
     return errorMsg;
 }
 
@@ -42,11 +43,11 @@ void OpenTable::act(Restaurant &restaurant) {
  Table * tempTable = restaurant.getTable(tableId);
  if(tempTable != nullptr && !tempTable->isOpen() && tempTable->getCapacity() >= customers.size()-1)
  {
-   tempTable->openTable();for(int i=0;i<customers.size();i++){tempTable->addCustomer(customers[i]);this.BaseAction.status(COMPLETED);}
+   tempTable->openTable();for(int i=0;i<customers.size();i++){tempTable->addCustomer(customers[i]);this->complete();}
  }
  else
      {
-         BaseAction.status(ERROR);getErrorMsg();
+        getErrorMsg();
      }
 }
 
@@ -61,12 +62,12 @@ Order::Order(int id): tableId(id) {
 }
 
 void Order::act(Restaurant &restaurant) {
-    Table * tempTable(restaurant.getTable(id));
+    Table * tempTable(restaurant.getTable(tableId));
     if(tempTable != nullptr && tempTable->isOpen())
-    {tempTable->order(&restaurant.getMenu());}
+    {tempTable->order(restaurant.getMenu());}
     else
     {
-        BaseAction.status(ERROR);getErrorMsg();
+       getErrorMsg();
     }
 
 }
@@ -78,25 +79,29 @@ std::string Order::toString() const {
 //******************************************************************
 
 MoveCustomer::MoveCustomer(int src, int dst, int customerId): srcTable(src),dstTable(dst), id(customerId) {
- error("cannot move customer");
+  error("cannot move customer");
 }
 
 void MoveCustomer::act(Restaurant &restaurant) {
-  Table * srcTable = restaurant.getTable(src);
-  Table * dstTable = restaurant.getTable(dst);
-  Customer * customer = srcTable.getCustomer(id);
-  if(srcTable!=nullptr && srcTable->isOpen() && dstTable!=nullptr && dstTable->isOpen() && customer!=nullptr && dstTable.getNumOfAvailbleSeats()>0)
+  Table * src = restaurant.getTable(srcTable);
+  Table * dst = restaurant.getTable(dstTable);
+  Customer * customer = src->getCustomer(id);
+  if(src!=nullptr && src->isOpen() && dst!=nullptr && dst->isOpen() && customer!=nullptr && dst->getNumOfAvailbleSeats()>0)
   {
-    srcTable->removeCustomer(customer->getId());
-    dstTable->addCustomer(customer);
-    std::vector<OrderPair> tempOrderlist(srcTable->getOrders());
+    src->removeCustomer(customer->getId());
+    dst->addCustomer(customer);
+    std::vector<OrderPair>  tempOrderlist = src->getOrders();
     for(int i = 0;i<tempOrderlist.size();i++){
-        if(tempOrderlist[i].first==customer->getId()){dstTable->getOrders().push_back(tempOrderlist[i]);tempOrderlist.erase(tempOrderlist.begin()+i);}
+        if(tempOrderlist[i].first==customer->getId())
+        {
+            dst->getOrders().push_back(tempOrderlist[i]);
+            src->getOrders().erase(tempOrderlist.begin()+i);
+        }
     }
   }
   else
   {
-      BaseAction.status(ERROR);getErrorMsg();
+      getErrorMsg();
   }
 }
 
@@ -111,7 +116,7 @@ Close::Close(int id):tableId(id) {
 }
 
 void Close::act(Restaurant &restaurant) {
-
+  Table * toCloseTable(restaurant.getTable(tableId));
 }
 
 std::string Close::toString() const {
