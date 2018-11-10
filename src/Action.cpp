@@ -23,18 +23,19 @@ void BaseAction::complete() {
 
 void BaseAction::error(std::string errorMsg) {
     errorMsg=errorMsg;
+    status=ERROR;
+    cout<<errorMsg<<endl;
 
 }
 
 std::string BaseAction::getErrorMsg() const {
-
     return errorMsg;
 }
 
 //*****************************************************************
 
 OpenTable::OpenTable(int id, std::vector<Customer *> &customersList): tableId(id) , customers(customersList){
-        error("Table does not exist or is already open");
+
 }
 // This method opens a new table for the list of customers, it needs to check 2 things:
 //1.there exist a table with the given Id.
@@ -53,7 +54,7 @@ void OpenTable::act(Restaurant &restaurant) {
  }
  else
      {
-        getErrorMsg();
+         error("Table does not exist or is already open");
      }
 }
 
@@ -64,7 +65,7 @@ std::string OpenTable::toString() const {
 //*****************************************************************
 
 Order::Order(int id): tableId(id) {
-    error("Table does not exist or is not open");
+
 }
 
 void Order::act(Restaurant &restaurant) {
@@ -73,7 +74,7 @@ void Order::act(Restaurant &restaurant) {
     {tempTable->order(restaurant.getMenu());}
     else
     {
-       getErrorMsg();
+        error("Table does not exist or is not open");
     }
 
 }
@@ -85,7 +86,7 @@ std::string Order::toString() const {
 //******************************************************************
 
 MoveCustomer::MoveCustomer(int src, int dst, int customerId): srcTable(src),dstTable(dst), id(customerId) {
-  error("Cannot move customer");
+
 }
 
 void MoveCustomer::act(Restaurant &restaurant) {
@@ -112,7 +113,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
       for(int i=0;i<tempOrderlist.size();i++){
           src->getOrders().push_back(tempOrderlist[i]);
       }
-    std::vector<OrderPair>  tempOrderlist = src->getOrders();
+
     for(int i = 0;i<tempOrderlist.size();i++){
         if(tempOrderlist[i].first==customer->getId())
         {
@@ -123,7 +124,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
   }
   else
   {
-      getErrorMsg();
+      error("Cannot move customer");
   }
 }
 
@@ -170,7 +171,9 @@ PrintMenu::PrintMenu() {
 }
 
 void PrintMenu::act(Restaurant &restaurant) {
-
+   for(int i=0;i<restaurant.getMenu().size();i++){
+       cout<< restaurant.getMenu()[i].getName() + " " + "restaurant.getMenu()[i].getType()" + " " + "restaurant.getMenu()[i].getId()" << endl;
+   }
 }
 
 std::string PrintMenu::toString() const {
@@ -185,6 +188,21 @@ PrintTableStatus::PrintTableStatus(int id): tableId(id){
 }
 
 void PrintTableStatus::act(Restaurant &restaurant) {
+    Table *toPrint = restaurant.getTable(tableId);
+    if(toPrint->isOpen())
+    {
+        cout << "Table " << tableId << "status: " << "open" << endl;
+        cout << "Customers:" << endl;
+        for(int i=0;i<toPrint->getCustomers().size();i++){
+            cout<< toPrint->getCustomers()[i]->getId()<< " " << toPrint->getCustomers()[i]->getName()<<endl;
+        }
+        for(int j=0;j<toPrint->getOrders().size();j++){
+            cout<< toPrint->getOrders()[j].second.getName()<< " " << toPrint->getOrders()[j].second.getPrice()<< " " << toPrint->getOrders()[j].first<<endl;
+        }
+    }
+    else{
+        cout << "Table " << tableId << "status: " << "closed" << endl;
+    }
 
 }
 
