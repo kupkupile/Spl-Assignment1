@@ -6,7 +6,7 @@
 #include "Table.h"
 
 
-BaseAction::BaseAction() {
+BaseAction::BaseAction(){
 
 }
 
