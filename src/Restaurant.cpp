@@ -18,16 +18,18 @@ Restaurant::Restaurant():open(),tables(),menu(),actionsLog() {
 }
 
 Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu(),actionsLog(),actionsLogStrings() {
-    /*open=false;
-    std::ifstream myFile(configFilePath);
+    open=false;
+    std::ifstream myFile;
+    myFile.open("/home//levletom//CLionProjects//SPL_Assignment1//configFile.txt");
     std::vector<std::string> lines;
     std::string line;
+
     if(myFile.is_open()){
         while(getline(myFile,line)){
             lines.push_back(line);
         }
     }
-    */
+
     tables.push_back(new Table(4));
     tables.push_back(new Table(10));
     tables.push_back((new Table(10)));
