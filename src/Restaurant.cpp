@@ -40,15 +40,6 @@ Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu()
     createMenu(lines,readIndex);
 
 
-    tables.push_back(new Table(4));
-    tables.push_back(new Table(10));
-    tables.push_back((new Table(10)));
-    menu.push_back(Dish(1,"BEER",50,ALC));
-    menu.push_back(Dish(2,"Salad",40,VEG));
-    menu.push_back(Dish(3,"Water",10,BVG));
-    menu.push_back(Dish(4,"Wine",60,ALC));
-    menu.push_back(Dish(5,"Chili con carne",200,SPC));
-    open=false;
     customerindex = 0;
 
 
@@ -103,7 +94,7 @@ void Restaurant::start() {
 }
 
 int Restaurant::getNumOfTables() const {
-    return 0;
+    return tables.size();
 }
 
 std::vector<std::string> Restaurant::getActionsLogStrings() {
@@ -272,7 +263,7 @@ void Restaurant::createMenu(std::vector<std::string> lines, int readIndex) {
     int dishIndex =0;
     while(readIndex<lines.size()){
         std::vector<std::string> tokens;
-        string delims = " ,";
+        string delims = ",";
         std::size_t start = lines[readIndex].find_first_not_of(delims), end = 0;
         while((end = lines[readIndex].find_first_of(delims, start)) != std::string::npos)
         {
@@ -281,6 +272,18 @@ void Restaurant::createMenu(std::vector<std::string> lines, int readIndex) {
         }
         if(start != std::string::npos)
             tokens.push_back(lines[readIndex].substr(start));
+        DishType dt;
+        if(tokens[1]=="VEG")
+            dt=VEG;
+        else if(tokens[1]=="ALC")
+            dt=ALC;
+        else if(tokens[1]=="BVG")
+            dt=BVG;
+        else if(tokens[1]=="SPC")
+            dt=SPC;
+        menu.push_back(Dish(dishIndex,tokens[0],stoi(tokens[2]),dt));
+        readIndex++;
+        readIndex = getNextValidLineIndex(lines,readIndex);
 
     }
 

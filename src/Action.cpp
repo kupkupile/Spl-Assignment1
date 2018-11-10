@@ -166,14 +166,12 @@ void CloseAll::act(Restaurant &restaurant) {
     int numOfTables = restaurant.getNumOfTables();
     for(int i = 0;i<numOfTables;i++){
         Table * table = restaurant.getTable(i);
-        if(table==nullptr||!table->isOpen()) {
-
-        }
-        else{
+        if(table!=nullptr&&table->isOpen()) {
             int bill = table->getBill();
             table->closeTable();
             cout<<"Table "<<i<<" was closed. Bill "<<bill<<"NIS"<<endl;
         }
+
     }
     complete();
     restaurant.close();
@@ -239,7 +237,14 @@ void PrintActionsLog::act(Restaurant &restaurant) {
     vector<string> actionLogStrings = restaurant.getActionsLogStrings();
     vector<BaseAction*> actionsLog = restaurant.getActionsLog();
     for(int i= 0; i<actionLogStrings.size()-1;i++){
-        cout<<actionLogStrings[i]<< " "<< actionsLog[i]->getStatus()<<endl;
+        string msg;
+        if(actionsLog[i]->getStatus()==COMPLETED)
+            msg= "Completed";
+        else if(actionsLog[i]->getStatus()==ERROR)
+            msg = "Error: "+getErrorMsg();
+        else
+            msg = "PENDING";
+        cout<<actionLogStrings[i]<< " "<< msg<<endl;
     }
 }
 
