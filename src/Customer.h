@@ -33,6 +33,7 @@ public:
 	std::vector<int> order(const std::vector<Dish> &menu);
 	std::string toString() const;
 private:
+	bool orderedAlready;
 };
 
 
@@ -42,6 +43,7 @@ public:
 	std::vector<int> order(const std::vector<Dish> &menu);
 	std::string toString() const;
 private:
+	bool orderedAlready;
 };
 
 
@@ -50,7 +52,9 @@ public:
 	AlchoholicCustomer(std::string name, int id);
 	std::vector<int> order(const std::vector<Dish> &menu);
 	std::string toString() const;
+	bool Ordered(int dishId);
 private:
+	std::vector<int> ALCOrdered;
 };
 
 
