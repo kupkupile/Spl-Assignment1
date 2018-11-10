@@ -29,6 +29,16 @@ Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu()
             lines.push_back(line);
         }
     }
+    int readIndex=0;
+    readIndex = getNextValidLineIndex(lines, readIndex);
+    int numOfTables = stoi(lines[readIndex]);
+    readIndex++;
+    readIndex = getNextValidLineIndex(lines,readIndex);
+    createTables(numOfTables,lines[readIndex]);
+    readIndex++;
+    readIndex = getNextValidLineIndex(lines,readIndex);
+    createMenu(lines,readIndex);
+
 
     tables.push_back(new Table(4));
     tables.push_back(new Table(10));
@@ -43,6 +53,24 @@ Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu()
 
 
 
+}
+
+int Restaurant::getNextValidLineIndex(const vector<string> &lines, int readIndex) const {
+    bool stop=false;
+    while(!stop){
+        if(readIndex<lines.size()){
+            if(lines[readIndex].empty())
+                readIndex++;
+            else if(lines[readIndex][0]=='#')
+                readIndex++;
+            else
+                stop=true;
+        }
+        else
+            stop=true;
+
+    }
+    return readIndex;
 }
 
 void Restaurant::start() {
@@ -222,5 +250,39 @@ BaseAction *Restaurant::createBackupAction(std::vector<std::string> &vector) {
 BaseAction *Restaurant::createRestoreAction(std::vector<std::string> &tokens) {
     RestoreResturant* ans = new RestoreResturant();
     return ans;
+}
+
+void Restaurant::createTables(int numOftables, string &tableConfigLine) {
+    std::vector<std::string> tokens;
+    string delims = " ,";
+    std::size_t start = tableConfigLine.find_first_not_of(delims), end = 0;
+    while((end = tableConfigLine.find_first_of(delims, start)) != std::string::npos)
+    {
+        tokens.push_back(tableConfigLine.substr(start, end - start));
+        start = tableConfigLine.find_first_not_of(delims, end);
+    }
+    if(start != std::string::npos)
+        tokens.push_back(tableConfigLine.substr(start));
+    for(int i =0;i<tokens.size();i++){
+        tables.push_back(new Table(stoi(tokens[i])));
+    }
+}
+
+void Restaurant::createMenu(std::vector<std::string> lines, int readIndex) {
+    int dishIndex =0;
+    while(readIndex<lines.size()){
+        std::vector<std::string> tokens;
+        string delims = " ,";
+        std::size_t start = lines[readIndex].find_first_not_of(delims), end = 0;
+        while((end = lines[readIndex].find_first_of(delims, start)) != std::string::npos)
+        {
+            tokens.push_back(lines[readIndex].substr(start, end - start));
+            start = lines[readIndex].find_first_not_of(delims, end);
+        }
+        if(start != std::string::npos)
+            tokens.push_back(lines[readIndex].substr(start));
+
+    }
+
 }
 
