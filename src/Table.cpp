@@ -78,3 +78,7 @@ int Table::getBill() {
 bool Table::isOpen() {
     return open;
 }
+
+int Table::getNumOfAvailbleSeats() {
+    return getCapacity()-(customersList.size()-1);
+}

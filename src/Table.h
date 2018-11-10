@@ -21,6 +21,7 @@ public:
     void closeTable();
     int getBill();
     bool isOpen();
+    int getNumOfAvailbleSeats();
 private:
     int capacity;
     bool open;
