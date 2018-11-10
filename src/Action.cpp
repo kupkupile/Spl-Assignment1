@@ -5,7 +5,7 @@
 #include "Action.h"
 #include "Table.h"
 #include "Restaurant.h"
-
+using namespace std;
 
 BaseAction::BaseAction():status(PENDING) {
 
@@ -20,7 +20,7 @@ void BaseAction::complete() {
 }
 
 void BaseAction::error(std::string errorMsg) {
-    this->errorMsg=errorMsg;
+    errorMsg=errorMsg;
 
 }
 
@@ -79,7 +79,7 @@ std::string Order::toString() const {
 //******************************************************************
 
 MoveCustomer::MoveCustomer(int src, int dst, int customerId): srcTable(src),dstTable(dst), id(customerId) {
-  error("cannot move customer");
+  error("Cannot move customer");
 }
 
 void MoveCustomer::act(Restaurant &restaurant) {
@@ -90,14 +90,22 @@ void MoveCustomer::act(Restaurant &restaurant) {
   {
     src->removeCustomer(customer->getId());
     dst->addCustomer(customer);
-    std::vector<OrderPair>  tempOrderlist = src->getOrders();
-    for(int i = 0;i<tempOrderlist.size();i++){
-        if(tempOrderlist[i].first==customer->getId())
+    std::vector<OrderPair>  tempOrderlist;
+    for(int i = 0;i<src->getOrders().size();i++){
+        if(src->getOrders()[i].first==customer->getId())
         {
-            dst->getOrders().push_back(tempOrderlist[i]);
-            src->getOrders().erase(tempOrderlist.begin()+i);
+            dst->getOrders().push_back(src->getOrders()[i]);
         }
+        else
+        {
+            tempOrderlist.push_back(src->getOrders()[i]);
+        }
+
     }
+      src->getOrders().clear();
+      for(int i=0;i<tempOrderlist.size();i++){
+          src->getOrders().push_back(tempOrderlist[i]);
+      }
   }
   else
   {
