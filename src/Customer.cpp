@@ -46,6 +46,10 @@ std::vector<int> VegetarianCustomer::order(const std::vector<Dish> &menu) {
 return dishesOrdered;
 }
 
+Customer *VegetarianCustomer::clone() {
+    return nullptr;
+}
+
 //yet to be implemented
 std::string VegetarianCustomer::toString() const {
     return std::__cxx11::string();
@@ -76,6 +80,10 @@ std::vector<int> CheapCustomer::order(const std::vector<Dish> &menu) {
 
         return std::vector<int>();
     }
+}
+
+Customer *CheapCustomer::clone() {
+    return nullptr;
 }
 
 //yet to be implemented
@@ -119,6 +127,10 @@ std::vector<int> SpicyCustomer::order(const std::vector<Dish> &menu) {
 
 }
 
+Customer *SpicyCustomer::clone() {
+    return nullptr;
+}
+
 std::string SpicyCustomer::toString() const {
     return std::__cxx11::string();
 }
@@ -147,6 +159,10 @@ std::vector<int> AlchoholicCustomer::order(const std::vector<Dish> &menu) {
          else
             {return std::vector<int>();}
 
+}
+
+Customer *AlchoholicCustomer::clone() {
+    return nullptr;
 }
 
 std::string AlchoholicCustomer::toString() const {
