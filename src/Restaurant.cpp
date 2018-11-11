@@ -148,7 +148,7 @@ Customer* Restaurant::creatCustomer(string name, string type) {
         return returnCust;
     }
     if(type=="spc"){
-        Customer* returnCust = new AlchoholicCustomer(name,customerindex);
+        Customer* returnCust = new SpicyCustomer(name,customerindex);
         customerindex++;
         return returnCust;
     }
@@ -255,7 +255,8 @@ void Restaurant::createTables(int numOftables, string &tableConfigLine) {
     if(start != std::string::npos)
         tokens.push_back(tableConfigLine.substr(start));
     for(int i =0;i<tokens.size();i++){
-        tables.push_back(new Table(stoi(tokens[i])));
+        Table* t = new Table(stoi(tokens[i]));
+        tables.push_back(t);
     }
 }
 
@@ -282,6 +283,7 @@ void Restaurant::createMenu(std::vector<std::string> lines, int readIndex) {
         else if(tokens[1]=="SPC")
             dt=SPC;
         menu.push_back(Dish(dishIndex,tokens[0],stoi(tokens[2]),dt));
+        dishIndex++;
         readIndex++;
         readIndex = getNextValidLineIndex(lines,readIndex);
 

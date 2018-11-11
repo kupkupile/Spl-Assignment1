@@ -22,11 +22,28 @@ public:
     int getBill();
     bool isOpen();
     int getNumOfAvailbleSeats();
+
+
+    // Destructor
+    virtual ~Table();
+
+    // Copy Constructor
+    Table(const Table &other);
+
+    // Move Constructor
+    Table(Table &&other);
+
+    // Copy Assignment
+    Table& operator=(const Table &other);
+
+    // Move Assignment
+   Table& operator=(Table &&other);
 private:
     int capacity;
     bool open;
     std::vector<Customer*> customersList;
     std::vector<OrderPair> orderList; //A list of pairs for each order in a table - (customer_id, Dish)
+    void clear();
 };
 
 

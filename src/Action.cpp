@@ -5,7 +5,7 @@
 #include "Action.h"
 #include "Table.h"
 #include "Restaurant.h"
-using namespace std;
+extern Restaurant *backup;
 
 using namespace std;
 
@@ -273,7 +273,12 @@ RestoreResturant::RestoreResturant() {
 }
 
 void RestoreResturant::act(Restaurant &restaurant) {
-
+    if(backup!= nullptr) {
+        //restaurant = *backup;
+        complete();
+    }
+    else
+        error("No backup available");
 }
 
 std::string RestoreResturant::toString() const {

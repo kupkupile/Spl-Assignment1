@@ -2,6 +2,7 @@
 // Created by levletom on 11/9/18.
 //
 
+#include <unordered_map>
 #include "Table.h"
 
 Table::Table(int t_capacity):capacity(t_capacity),customersList(),orderList()  {
@@ -65,6 +66,12 @@ void Table::openTable() {
 }
 //delte customers
 void Table::closeTable() {
+    for (int i = 0;i<customersList.size();i++){
+        delete customersList[i];
+
+    }
+    customersList.clear();
+    orderList.clear();
     open = false;
 }
 
@@ -81,5 +88,64 @@ bool Table::isOpen() {
 }
 
 int Table::getNumOfAvailbleSeats() {
-    return getCapacity()-(customersList.size()-1);
+    return getCapacity()-((int)customersList.size());
+}
+
+Table::~Table() {
+    clear();
+}
+
+
+Table::Table(const Table &other):capacity(other.getCapacity()),open(other.open),customersList(),orderList(other.orderList){
+    for(int i=0;i<other.customersList.size();i++){
+        customersList.push_back(other.customersList[i]->clone());
+    }
+}
+
+Table::Table(Table &&other):capacity(other.getCapacity()),open(other.isOpen()),customersList(),orderList(other.orderList) {
+    for(int i=0;i<other.customersList.size();i++){
+        customersList.push_back(other.customersList[i]);
+        other.customersList[i]=nullptr;
+    }
+}
+
+Table &Table::operator=(const Table &other) {
+    if (this == &other) {
+        return *this;
+    }
+    for(int i=0;i<other.customersList.size();i++){
+        customersList.push_back(other.customersList[i]->clone());
+    }
+    capacity=other.getCapacity();
+    open=other.open;
+    for(int i= 0;i<other.orderList.size();i++){
+        orderList.push_back(OrderPair(other.orderList[i].first,Dish(other.orderList[i].second.getId(),other.orderList[i].second.getName(),other.orderList[i].second.getPrice(),other.orderList[i].second.getType())));
+    }
+
+}
+
+Table &Table::operator=(Table &&other) {
+    if (this != &other)
+    {
+        for(int i=0;i<other.customersList.size();i++){
+            customersList.push_back(other.customersList[i]);
+            other.customersList[i]=nullptr;
+        }
+        capacity=other.getCapacity();
+        open=other.open;
+        for(int i= 0;i<other.orderList.size();i++){
+            orderList.push_back(OrderPair(other.orderList[i].first,Dish(other.orderList[i].second.getId(),other.orderList[i].second.getName(),other.orderList[i].second.getPrice(),other.orderList[i].second.getType())));
+        }
+    }
+
+    return *this;
+}
+
+void Table::clear() {
+    for(int i=0;i<customersList.size();i++){
+        delete customersList[i];
+
+    }
+    customersList.clear();
+
 }
