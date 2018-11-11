@@ -255,7 +255,8 @@ void Restaurant::createTables(int numOftables, string &tableConfigLine) {
     if(start != std::string::npos)
         tokens.push_back(tableConfigLine.substr(start));
     for(int i =0;i<tokens.size();i++){
-        tables.push_back(new Table(stoi(tokens[i])));
+        Table* t = new Table(stoi(tokens[i]));
+        tables.push_back(t);
     }
 }
 
