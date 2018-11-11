@@ -66,6 +66,12 @@ void Table::openTable() {
 }
 //delte customers
 void Table::closeTable() {
+    for (int i = 0;i<customersList.size();i++){
+        delete customersList[i];
+
+    }
+    customersList.clear();
+    orderList.clear();
     open = false;
 }
 
@@ -138,7 +144,8 @@ Table &Table::operator=(Table &&other) {
 void Table::clear() {
     for(int i=0;i<customersList.size();i++){
         delete customersList[i];
-        customersList.clear();
+
     }
+    customersList.clear();
 
 }

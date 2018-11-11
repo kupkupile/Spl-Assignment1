@@ -282,6 +282,7 @@ void Restaurant::createMenu(std::vector<std::string> lines, int readIndex) {
         else if(tokens[1]=="SPC")
             dt=SPC;
         menu.push_back(Dish(dishIndex,tokens[0],stoi(tokens[2]),dt));
+        dishIndex++;
         readIndex++;
         readIndex = getNextValidLineIndex(lines,readIndex);
 
