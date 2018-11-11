@@ -148,7 +148,7 @@ Customer* Restaurant::creatCustomer(string name, string type) {
         return returnCust;
     }
     if(type=="spc"){
-        Customer* returnCust = new AlchoholicCustomer(name,customerindex);
+        Customer* returnCust = new SpicyCustomer(name,customerindex);
         customerindex++;
         return returnCust;
     }
