@@ -20,7 +20,7 @@ Restaurant::Restaurant():open(),tables(),menu(),actionsLog() {
 Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu(),actionsLog(),actionsLogStrings() {
     open=false;
     std::ifstream myFile;
-    myFile.open("/home//levletom//CLionProjects//SPL_Assignment1//configFile.txt");
+    myFile.open("/home//amitk//CLionProjects//Spl//Project1//configFile.txt");
     std::vector<std::string> lines;
     std::string line;
 

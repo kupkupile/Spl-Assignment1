@@ -3,6 +3,8 @@
 #tables description
 
 
+
+
 6,4,4,14,10,10
 
 
@@ -10,6 +12,7 @@
 #Menu
 
 Beer,ALC,50
+
 
 
 Salad,VEG,40
