@@ -82,7 +82,7 @@ bool Table::isOpen() {
 }
 
 int Table::getNumOfAvailbleSeats() {
-    return getCapacity()-(customersList.size()-1);
+    return getCapacity()-((int)customersList.size());
 }
 
 Table::~Table() {
