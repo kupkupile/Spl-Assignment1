@@ -18,10 +18,17 @@ public:
     ActionStatus getStatus() const;
     virtual void act(Restaurant& restaurant)=0;
     virtual std::string toString() const=0;
+    virtual BaseAction* clone()=0;
+    void setStatus(ActionStatus status);
+
+    void setErrorMsg(std::string msg);
 protected:
     void complete();
     void error(std::string errorMsg);
     std::string getErrorMsg() const;
+
+
+
 private:
     std::string errorMsg;
     ActionStatus status;
@@ -33,6 +40,9 @@ public:
     OpenTable(int id, std::vector<Customer *> &customersList);
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
+
 private:
 	const int tableId;
 	const std::vector<Customer *> customers;
@@ -44,6 +54,9 @@ public:
     Order(int id);
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
+
 private:
     const int tableId;
 };
@@ -54,6 +67,9 @@ public:
     MoveCustomer(int src, int dst, int customerId);
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
+
 private:
     const int srcTable;
     const int dstTable;
@@ -66,6 +82,9 @@ public:
     Close(int id);
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
+
 private:
     const int tableId;
 };
@@ -76,6 +95,9 @@ public:
     CloseAll();
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
+
 private:
 };
 
@@ -85,6 +107,9 @@ public:
     PrintMenu();
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
+
 private:
 };
 
@@ -94,6 +119,9 @@ public:
     PrintTableStatus(int id);
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
+
 private:
     const int tableId;
 };
@@ -104,6 +132,9 @@ public:
     PrintActionsLog();
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
+
 private:
 };
 
@@ -113,6 +144,9 @@ public:
     BackupRestaurant();
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
+
 private:
 };
 
@@ -122,6 +156,8 @@ public:
     RestoreResturant();
     void act(Restaurant &restaurant);
     std::string toString() const;
+
+    BaseAction *clone() override;
 
 };
 

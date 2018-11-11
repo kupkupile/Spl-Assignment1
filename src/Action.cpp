@@ -32,6 +32,15 @@ std::string BaseAction::getErrorMsg() const {
     return errorMsg;
 }
 
+void BaseAction::setStatus(ActionStatus status) {
+    this->status=status;
+
+}
+
+void BaseAction::setErrorMsg(string msg) {
+    errorMsg=msg;
+}
+
 //*****************************************************************
 
 OpenTable::OpenTable(int id, std::vector<Customer *> &customersList): tableId(id) , customers(customersList){
@@ -58,6 +67,17 @@ void OpenTable::act(Restaurant &restaurant) {
      }
 }
 
+BaseAction *OpenTable::clone() {
+    vector<Customer*> tCustomers;
+    for(int i=0;i<customers.size();i++){
+        tCustomers.push_back(customers[i]);
+    }
+    BaseAction* result = new OpenTable(tableId,tCustomers);
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
+}
+
 std::string OpenTable::toString() const {
     return std::__cxx11::string();
 }
@@ -77,6 +97,13 @@ void Order::act(Restaurant &restaurant) {
         error("Table does not exist or is not open");
     }
 
+}
+
+BaseAction *Order::clone() {
+    BaseAction* result = new Order(tableId);
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
 }
 
 std::string Order::toString() const {
@@ -128,6 +155,13 @@ void MoveCustomer::act(Restaurant &restaurant) {
   }
 }
 
+BaseAction *MoveCustomer::clone() {
+    BaseAction* result = new MoveCustomer(srcTable,dstTable,id);
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
+}
+
 std::string MoveCustomer::toString() const {
     return std::__cxx11::string();
 }
@@ -150,6 +184,13 @@ void Close::act(Restaurant &restaurant) {
       complete();
   }
 
+}
+
+BaseAction *Close::clone() {
+    BaseAction* result = new Close(tableId);
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
 }
 
 std::string Close::toString() const {
@@ -177,6 +218,13 @@ void CloseAll::act(Restaurant &restaurant) {
     restaurant.close();
 }
 
+BaseAction *CloseAll::clone() {
+    BaseAction* result = new CloseAll();
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
+}
+
 std::string CloseAll::toString() const {
     return std::__cxx11::string();
 }
@@ -191,6 +239,13 @@ void PrintMenu::act(Restaurant &restaurant) {
    for(int i=0;i<restaurant.getMenu().size();i++){
        cout<< restaurant.getMenu()[i].getName() << " " << restaurant.getMenu()[i].getType() << " " << restaurant.getMenu()[i].getId() << endl;
    }
+}
+
+BaseAction *PrintMenu::clone() {
+    BaseAction* result = new PrintMenu();
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
 }
 
 std::string PrintMenu::toString() const {
@@ -223,6 +278,13 @@ void PrintTableStatus::act(Restaurant &restaurant) {
 
 }
 
+BaseAction *PrintTableStatus::clone() {
+    BaseAction* result = new PrintTableStatus(tableId);
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
+}
+
 std::string PrintTableStatus::toString() const {
     return std::__cxx11::string();
 }
@@ -248,6 +310,13 @@ void PrintActionsLog::act(Restaurant &restaurant) {
     }
 }
 
+BaseAction *PrintActionsLog::clone() {
+    BaseAction* result = new PrintActionsLog();
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
+}
+
 std::string PrintActionsLog::toString() const {
     return std::__cxx11::string();
 }
@@ -260,6 +329,13 @@ BackupRestaurant::BackupRestaurant() {
 
 void BackupRestaurant::act(Restaurant &restaurant) {
 
+}
+
+BaseAction *BackupRestaurant::clone() {
+    BaseAction* result = new BackupRestaurant();
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
 }
 
 std::string BackupRestaurant::toString() const {
@@ -279,6 +355,13 @@ void RestoreResturant::act(Restaurant &restaurant) {
     }
     else
         error("No backup available");
+}
+
+BaseAction *RestoreResturant::clone() {
+    BaseAction* result = new RestoreResturant();
+    result->setStatus(getStatus());
+    result->setErrorMsg(getErrorMsg());
+    return result;
 }
 
 std::string RestoreResturant::toString() const {
