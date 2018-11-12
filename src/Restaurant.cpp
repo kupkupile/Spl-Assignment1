@@ -85,14 +85,48 @@ Restaurant &Restaurant::operator=(const Restaurant &other) {
             delete  tables[i];
         }
         tables.clear();
-        for(int i=0;i<other.tables.size();i++){
-            tables.push_back(other.tables[i]->clone());
+        for(int i=0;other.tables.size();i++){
+            Table *table(other.tables[i]);
+            tables.push_back(table);
+        }
+        for(int i=0;i<actionsLog.size();i++){
+            delete  actionsLog[i];
+        }
+        for(int i=0;i<other.actionsLog.size();i++){
+            actionsLog.push_back(other.actionsLog[i]->clone());
+        }
+        menu.clear();
+        for(int i=0;other.menu.size();i++){
+            Dish dish(other.menu[i]);
+            menu.push_back(dish);
         }
     }
 }
 
 Restaurant &Restaurant::operator=(Restaurant &&other) {
-    return <#initializer#>;
+    if (this != &other) {
+        for(int i=0;i<tables.size();i++){
+            delete  tables[i];
+        }
+        tables.clear();
+        for(int i=0;other.tables.size();i++){
+            Table *table(other.tables[i]);
+            delete other.tables[i];
+            tables.push_back(table);
+        }
+        for(int i=0;i<actionsLog.size();i++){
+            delete  actionsLog[i];
+        }
+        for(int i=0;i<other.actionsLog.size();i++){
+            actionsLog.push_back(other.actionsLog[i]->clone());
+            delete other.actionsLog[i];
+        }
+        menu.clear();
+        for(int i=0;other.menu.size();i++){
+            Dish dish(other.menu[i]);
+            menu.push_back(dish);
+        }
+    }
 }
 
 int Restaurant::getNextValidLineIndex(const vector<string> &lines, int readIndex) const {
