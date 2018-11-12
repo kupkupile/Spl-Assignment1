@@ -20,6 +20,7 @@ public:
     virtual std::string toString() const=0;
     virtual BaseAction* clone()=0;
     void setStatus(ActionStatus status);
+    virtual ~BaseAction();
 
     void setErrorMsg(std::string msg);
 protected:
@@ -43,9 +44,11 @@ public:
 
     BaseAction *clone() override;
 
+	~OpenTable() override;
+
 private:
 	const int tableId;
-	const std::vector<Customer *> customers;
+	std::vector<Customer *> customers;
 };
 
 
@@ -56,6 +59,8 @@ public:
     std::string toString() const;
 
     BaseAction *clone() override;
+
+	~Order() override;
 
 private:
     const int tableId;
@@ -69,6 +74,8 @@ public:
     std::string toString() const;
 
     BaseAction *clone() override;
+
+	~MoveCustomer() override;
 
 private:
     const int srcTable;
@@ -85,6 +92,8 @@ public:
 
     BaseAction *clone() override;
 
+	~Close() override;
+
 private:
     const int tableId;
 };
@@ -98,6 +107,8 @@ public:
 
     BaseAction *clone() override;
 
+	~CloseAll() override;
+
 private:
 };
 
@@ -110,6 +121,8 @@ public:
 
     BaseAction *clone() override;
 
+	~PrintMenu() override;
+
 private:
 };
 
@@ -121,6 +134,8 @@ public:
     std::string toString() const;
 
     BaseAction *clone() override;
+
+	~PrintTableStatus() override;
 
 private:
     const int tableId;
@@ -135,6 +150,8 @@ public:
 
     BaseAction *clone() override;
 
+	~PrintActionsLog() override;
+
 private:
 };
 
@@ -147,6 +164,8 @@ public:
 
     BaseAction *clone() override;
 
+	~BackupRestaurant() override;
+
 private:
 };
 
@@ -158,6 +177,8 @@ public:
     std::string toString() const;
 
     BaseAction *clone() override;
+
+	~RestoreResturant() override;
 
 };
 

@@ -18,6 +18,10 @@ int Customer::getId() const {
     return id;
 }
 
+Customer::~Customer() {
+
+}
+
 //-----------------------------------------------------Veggie Customer-----------------------------
 VegetarianCustomer::VegetarianCustomer(std::string name, int id) : Customer(name, id) {
 
@@ -55,6 +59,9 @@ std::string VegetarianCustomer::toString() const {
     return std::__cxx11::string();
 }
 
+VegetarianCustomer::~VegetarianCustomer() {
+
+}
 
 //----------------------------------------------------------------CheapCustomer-----------------------------------
 CheapCustomer::CheapCustomer(std::string name, int id) : Customer(name, id) {
@@ -89,6 +96,10 @@ Customer *CheapCustomer::clone() {
 //yet to be implemented
 std::string CheapCustomer::toString() const {
     return std::__cxx11::string();
+}
+
+CheapCustomer::~CheapCustomer() {
+
 }
 
 //-----------------------------------------------------------------Spicy Customer-------------------------------
@@ -134,6 +145,11 @@ Customer *SpicyCustomer::clone() {
 std::string SpicyCustomer::toString() const {
     return std::__cxx11::string();
 }
+
+SpicyCustomer::~SpicyCustomer() {
+
+}
+
 //------------------------------------------------------------Alchoholic Customer-------------------------------
 AlchoholicCustomer::AlchoholicCustomer(std::string name, int id) : Customer(name, id) {
 
@@ -167,4 +183,8 @@ Customer *AlchoholicCustomer::clone() {
 
 std::string AlchoholicCustomer::toString() const {
     return std::__cxx11::string();
+}
+
+AlchoholicCustomer::~AlchoholicCustomer() {
+
 }

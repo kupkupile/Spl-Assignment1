@@ -63,6 +63,10 @@ void OpenTable::act(Restaurant &restaurant) {
  }
  else
      {
+         for(int i =0;i<customers.size();i++){
+             delete customers[i];
+             customers[i] = nullptr;
+         }
          error("Table does not exist or is already open");
      }
 }
@@ -366,4 +370,48 @@ BaseAction *RestoreResturant::clone() {
 
 std::string RestoreResturant::toString() const {
     return std::__cxx11::string();
+}
+
+BaseAction::~BaseAction() {
+
+}
+
+OpenTable::~OpenTable() {
+
+}
+
+Order::~Order() {
+
+}
+
+MoveCustomer::~MoveCustomer() {
+
+}
+
+Close::~Close() {
+
+}
+
+CloseAll::~CloseAll() {
+
+}
+
+PrintMenu::~PrintMenu() {
+
+}
+
+PrintTableStatus::~PrintTableStatus() {
+
+}
+
+PrintActionsLog::~PrintActionsLog() {
+
+}
+
+BackupRestaurant::~BackupRestaurant() {
+
+}
+
+RestoreResturant::~RestoreResturant() {
+
 }
