@@ -11,13 +11,17 @@ backup
 log
 open 3 Albus,alc Severus,chp Minerva,veg
 order 3
+restore
 order 3
 order 2
 status 1
+backup
 status 2
 status 3
 restore
+backup
 status 3
 open 1 Luna,veg Ginny,spc
+restore
 log
 closeall

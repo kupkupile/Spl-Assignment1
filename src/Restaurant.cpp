@@ -62,6 +62,10 @@ Restaurant::Restaurant(const Restaurant &other){
         Dish dish(other.menu[i]);
         menu.push_back(dish);
     }
+    for(int i=0;i<other.getActionsLogStrings().size();i++){
+        actionsLogStrings.push_back(other.getActionsLogStrings()[i]);
+    }
+    open=other.open;
 }
 
 Restaurant::Restaurant(Restaurant &&other) {
@@ -77,6 +81,10 @@ Restaurant::Restaurant(Restaurant &&other) {
         Dish dish(other.menu[i]);
         menu.push_back(dish);
     }
+    for(int i=0;i<other.getActionsLogStrings().size();i++){
+        actionsLogStrings.push_back(other.getActionsLogStrings()[i]);
+    }
+    open=other.open;
 
 }
 
@@ -101,6 +109,10 @@ Restaurant &Restaurant::operator=(const Restaurant &other) {
         for(int i=0;i<other.menu.size();i++){
             Dish dish(other.menu[i]);
             menu.push_back(dish);
+        }
+        actionsLogStrings.clear();
+        for(int i=0;i<other.getActionsLogStrings().size();i++){
+            actionsLogStrings.push_back(other.getActionsLogStrings()[i]);
         }
     }
 }
@@ -128,6 +140,10 @@ Restaurant &Restaurant::operator=(Restaurant &&other) {
         for(int i=0;i<other.menu.size();i++){
             Dish dish(other.menu[i]);
             menu.push_back(dish);
+        }
+        actionsLogStrings.clear();
+        for(int i=0;i<other.getActionsLogStrings().size();i++){
+            actionsLogStrings.push_back(other.getActionsLogStrings()[i]);
         }
     }
 }
@@ -183,7 +199,7 @@ int Restaurant::getNumOfTables() const {
     return tables.size();
 }
 
-std::vector<std::string> Restaurant::getActionsLogStrings() {
+const std::vector<std::string> Restaurant::getActionsLogStrings() const {
     return actionsLogStrings;
 }
 
