@@ -152,7 +152,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
   }
   else
   {
-     this->error("Cannot move customer");
+     error("Cannot move customer");
   }
 }
 
