@@ -102,7 +102,7 @@ Table::Table(const Table &other):capacity(other.getCapacity()),open(other.open),
     }
 }
 
-Table::Table(Table &&other):capacity(other.getCapacity()),open(other.isOpen()),customersList(),orderList(other.orderList) {
+Table::Table(Table &&other):capacity(other.getCapacity()),open(other.open),customersList(),orderList(other.orderList) {
     for(int i=0;i<other.customersList.size();i++){
         customersList.push_back(other.customersList[i]);
         other.customersList[i]=nullptr;
@@ -134,8 +134,8 @@ Table &Table::operator=(Table &&other) {
     {
         for(int i=0;i<customersList.size();i++){
             delete  customersList[i];
-            customersList.clear();
         }
+        customersList.clear();
         for(int i=0;i<other.customersList.size();i++){
             customersList.push_back(other.customersList[i]);
             other.customersList[i]=nullptr;

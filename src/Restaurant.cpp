@@ -52,7 +52,7 @@ Restaurant::~Restaurant() {
 
 Restaurant::Restaurant(const Restaurant &other){
   for(int i=0;i<other.tables.size();i++){
-      Table *table(other.tables[i]);
+      Table* table= new Table(*other.tables[i]);
       tables.push_back(table);
   }
     for(int i=0;i<other.actionsLog.size();i++){
@@ -87,7 +87,7 @@ Restaurant &Restaurant::operator=(const Restaurant &other) {
         }
         tables.clear();
         for(int i=0;i<other.tables.size();i++){
-            Table *table(other.tables[i]);
+            Table* table= new Table(*other.tables[i]);
             tables.push_back(table);
         }
         for(int i=0;i<actionsLog.size();i++){
@@ -112,7 +112,7 @@ Restaurant &Restaurant::operator=(Restaurant &&other) {
         }
         tables.clear();
         for(int i=0;i<other.tables.size();i++){
-            Table *table(other.tables[i]);
+            Table* table= new Table(*other.tables[i]);
             delete other.tables[i];
             tables.push_back(table);
         }
