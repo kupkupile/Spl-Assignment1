@@ -60,6 +60,7 @@ void OpenTable::act(Restaurant &restaurant) {
        tempTable->addCustomer(customers[i]);
        this->complete();
    }
+   customers.clear();
  }
  else
      {
@@ -332,7 +333,12 @@ BackupRestaurant::BackupRestaurant() {
 }
 
 void BackupRestaurant::act(Restaurant &restaurant) {
-
+    if(backup!= nullptr)
+        backup = &restaurant;
+    else{
+        delete backup;
+        backup = &restaurant;
+    }
 }
 
 BaseAction *BackupRestaurant::clone() {
@@ -354,7 +360,7 @@ RestoreResturant::RestoreResturant() {
 
 void RestoreResturant::act(Restaurant &restaurant) {
     if(backup!= nullptr) {
-        //restaurant = *backup;
+        restaurant = *backup;
         complete();
     }
     else
