@@ -47,7 +47,8 @@ return dishesOrdered;
 }
 
 Customer *VegetarianCustomer::clone() {
-    return nullptr;
+    Customer *vegCustomer = new VegetarianCustomer(this->getName(),this->getId());
+    return vegCustomer;
 }
 
 //yet to be implemented
@@ -83,7 +84,17 @@ std::vector<int> CheapCustomer::order(const std::vector<Dish> &menu) {
 }
 
 Customer *CheapCustomer::clone() {
-    return nullptr;
+    SpicyCustomer *spcCustomer = new SpicyCustomer(this->getName(),this->getId());
+    spcCustomer.setOrderedAlready(this.isOrderedAlready());
+    return spcCustomer;
+}
+
+bool CheapCustomer::isOrderedAlready() const {
+    return orderedAlready;
+}
+
+void CheapCustomer::setOrderedAlready(bool orderedAlready) {
+    CheapCustomer::orderedAlready = orderedAlready;
 }
 
 //yet to be implemented
@@ -128,8 +139,19 @@ std::vector<int> SpicyCustomer::order(const std::vector<Dish> &menu) {
 }
 
 Customer *SpicyCustomer::clone() {
-    return nullptr;
+    SpicyCustomer *spcCustomer = new SpicyCustomer(this->getName(),this->getId());
+    spcCustomer.setOrderedAlready(this.isOrderedAlready());
+    return spcCustomer;
 }
+
+bool SpicyCustomer::isOrderedAlready() const {
+    return orderedAlready;
+}
+
+void SpicyCustomer::setOrderedAlready(bool orderedAlready) {
+    SpicyCustomer::orderedAlready = orderedAlready;
+}
+
 
 std::string SpicyCustomer::toString() const {
     return std::__cxx11::string();
@@ -162,7 +184,17 @@ std::vector<int> AlchoholicCustomer::order(const std::vector<Dish> &menu) {
 }
 
 Customer *AlchoholicCustomer::clone() {
-    return nullptr;
+    AlchoholicCustomer *alcCustomer = new AlchoholicCustomer(this->getName(),this->getId());
+    alcCustomer->setALCOrdered(this->getALCOrdered());
+    return alcCustomer;
+}
+
+const std::vector<int> &AlchoholicCustomer::getALCOrdered() const {
+    return ALCOrdered;
+}
+
+void AlchoholicCustomer::setALCOrdered(const std::vector<int> &ALCOrdered) {
+    AlchoholicCustomer::ALCOrdered = ALCOrdered;
 }
 
 std::string AlchoholicCustomer::toString() const {
