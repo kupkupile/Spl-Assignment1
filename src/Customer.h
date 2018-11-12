@@ -44,6 +44,10 @@ public:
 
     ~CheapCustomer() override;
 
+	bool isOrderedAlready() const;
+
+	void setOrderedAlready(bool orderedAlready);
+
 private:
 	bool orderedAlready;
 };
@@ -59,6 +63,10 @@ public:
 
     ~SpicyCustomer() override;
 
+	bool isOrderedAlready() const;
+
+	void setOrderedAlready(bool orderedAlready);
+
 private:
 	bool orderedAlready;
 };
@@ -70,10 +78,13 @@ public:
 	std::vector<int> order(const std::vector<Dish> &menu);
 	std::string toString() const;
 	bool Ordered(int dishId);
-
 	Customer *clone() override;
 
     ~AlchoholicCustomer() override;
+
+	const std::vector<int> &getALCOrdered() const;
+
+	void setALCOrdered(const std::vector<int> &ALCOrdered);
 
 private:
 	std::vector<int> ALCOrdered;
