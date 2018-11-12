@@ -22,8 +22,8 @@ void BaseAction::complete() {
 }
 
 void BaseAction::error(std::string errorMsg) {
-    errorMsg=errorMsg;
-    status=ERROR;
+    setErrorMsg(errorMsg);
+    setStatus(ERROR);
     cout<<errorMsg<<endl;
 
 }
@@ -45,6 +45,7 @@ void BaseAction::setErrorMsg(string msg) {
 
 OpenTable::OpenTable(int id, std::vector<Customer *> &customersList): tableId(id) , customers(customersList){
 
+
 }
 // This method opens a new table for the list of customers, it needs to check 2 things:
 //1.there exist a table with the given Id.
@@ -63,7 +64,7 @@ void OpenTable::act(Restaurant &restaurant) {
  }
  else
      {
-         error("Table does not exist or is already open");
+         this->error("Table does not exist or is already open");
      }
 }
 
@@ -94,7 +95,7 @@ void Order::act(Restaurant &restaurant) {
     {tempTable->order(restaurant.getMenu());}
     else
     {
-        error("Table does not exist or is not open");
+       this->error("Table does not exist or is not open");
     }
 
 }
@@ -151,7 +152,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
   }
   else
   {
-      error("Cannot move customer");
+     this->error("Cannot move customer");
   }
 }
 
@@ -175,7 +176,7 @@ Close::Close(int id):tableId(id) {
 void Close::act(Restaurant &restaurant) {
   Table * table = restaurant.getTable(tableId);
   if(table==nullptr||!table->isOpen()) {
-      error("Table does not exist or is not open");
+    this->error("Table does not exist or is not open");
   }
   else{
       int bill = table->getBill();
@@ -354,7 +355,7 @@ void RestoreResturant::act(Restaurant &restaurant) {
         complete();
     }
     else
-        error("No backup available");
+       this->error("No backup available");
 }
 
 BaseAction *RestoreResturant::clone() {
