@@ -92,7 +92,7 @@ std::vector<int> CheapCustomer::order(const std::vector<Dish> &menu) {
 
 Customer *CheapCustomer::clone() {
     SpicyCustomer *spcCustomer = new SpicyCustomer(this->getName(),this->getId());
-    spcCustomer.setOrderedAlready(this.isOrderedAlready());
+    spcCustomer->setOrderedAlready(this->isOrderedAlready());
     return spcCustomer;
 }
 
@@ -151,7 +151,7 @@ std::vector<int> SpicyCustomer::order(const std::vector<Dish> &menu) {
 
 Customer *SpicyCustomer::clone() {
     SpicyCustomer *spcCustomer = new SpicyCustomer(this->getName(),this->getId());
-    spcCustomer.setOrderedAlready(this.isOrderedAlready());
+    spcCustomer->setOrderedAlready(this->isOrderedAlready());
     return spcCustomer;
 }
 
