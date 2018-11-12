@@ -20,7 +20,7 @@ Restaurant::Restaurant():open(),tables(),menu(),actionsLog() {
 Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu(),actionsLog(),actionsLogStrings() {
     open=false;
     std::ifstream myFile;
-    myFile.open("/home//levletom//CLionProjects//SPL_Assignment1//configFile.txt");
+    myFile.open("/home//amitk//CLionProjects//Spl//Project1//configFile.txt");
     std::vector<std::string> lines;
     std::string line;
 
@@ -44,6 +44,55 @@ Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu()
 
 
 
+}
+
+Restaurant::~Restaurant() {
+   clear();
+}
+
+Restaurant::Restaurant(const Restaurant &other){
+  for(int i=0;other.tables.size();i++){
+      Table *table(other.tables[i]);
+      tables.push_back(table);
+  }
+    for(int i=0;i<other.actionsLog.size();i++){
+        actionsLog.push_back(other.actionsLog[i]->clone());
+    }
+    for(int i=0;other.menu.size();i++){
+        Dish dish(other.menu[i]);
+        menu.push_back(dish);
+    }
+}
+
+Restaurant::Restaurant(Restaurant &&other) {
+    for(int i=0;i<other.tables.size();i++){
+        tables.push_back(other.tables[i]);
+        other.tables[i]=nullptr;
+    }
+    for(int i=0;i<other.actionsLog.size();i++){
+        actionsLog.push_back(other.actionsLog[i]);
+        other.actionsLog[i]=nullptr;
+    }
+    for(int i=0;other.menu.size();i++){
+        Dish dish(other.menu[i]);
+        menu.push_back(dish);
+    }
+}
+
+Restaurant &Restaurant::operator=(const Restaurant &other) {
+    if (this != &other) {
+        for(int i=0;i<tables.size();i++){
+            delete  tables[i];
+        }
+        tables.clear();
+        for(int i=0;i<other.tables.size();i++){
+            tables.push_back(other.tables[i]->clone());
+        }
+    }
+}
+
+Restaurant &Restaurant::operator=(Restaurant &&other) {
+    return <#initializer#>;
 }
 
 int Restaurant::getNextValidLineIndex(const vector<string> &lines, int readIndex) const {
@@ -260,6 +309,20 @@ void Restaurant::createTables(int numOftables, string &tableConfigLine) {
     }
 }
 
+void Restaurant::clear() {
+    for(int i=0;i<tables.size();i++){
+        delete tables[i];
+
+    }
+    for(int i=0;i<actionsLog.size();i++){
+        delete actionsLog[i];
+
+    }
+    actionsLog.clear();
+    tables.clear();
+
+}
+
 void Restaurant::createMenu(std::vector<std::string> lines, int readIndex) {
     int dishIndex =0;
     while(readIndex<lines.size()){
@@ -288,6 +351,7 @@ void Restaurant::createMenu(std::vector<std::string> lines, int readIndex) {
         readIndex = getNextValidLineIndex(lines,readIndex);
 
     }
+
 
 }
 

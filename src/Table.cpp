@@ -113,11 +113,16 @@ Table &Table::operator=(const Table &other) {
     if (this == &other) {
         return *this;
     }
+    for(int i=0;i<customersList.size();i++) {
+        delete customersList[i];
+    }
+    customersList.clear();
     for(int i=0;i<other.customersList.size();i++){
         customersList.push_back(other.customersList[i]->clone());
     }
     capacity=other.getCapacity();
     open=other.open;
+    orderList.clear();
     for(int i= 0;i<other.orderList.size();i++){
         orderList.push_back(OrderPair(other.orderList[i].first,Dish(other.orderList[i].second.getId(),other.orderList[i].second.getName(),other.orderList[i].second.getPrice(),other.orderList[i].second.getType())));
     }
@@ -127,12 +132,17 @@ Table &Table::operator=(const Table &other) {
 Table &Table::operator=(Table &&other) {
     if (this != &other)
     {
+        for(int i=0;i<customersList.size();i++){
+            delete  customersList[i];
+            customersList.clear();
+        }
         for(int i=0;i<other.customersList.size();i++){
             customersList.push_back(other.customersList[i]);
             other.customersList[i]=nullptr;
         }
         capacity=other.getCapacity();
         open=other.open;
+        orderList.clear();
         for(int i= 0;i<other.orderList.size();i++){
             orderList.push_back(OrderPair(other.orderList[i].first,Dish(other.orderList[i].second.getId(),other.orderList[i].second.getName(),other.orderList[i].second.getPrice(),other.orderList[i].second.getType())));
         }

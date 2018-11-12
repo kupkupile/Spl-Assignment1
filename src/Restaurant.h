@@ -19,6 +19,22 @@ public:
 	std::vector<std::string> getActionsLogStrings();
     std::vector<Dish>& getMenu();
     void close();
+    void clear();
+
+    // Destructor
+    virtual ~Restaurant();
+
+    // Copy Constructor
+    Restaurant(const Restaurant &other);
+
+    // Move Constructor
+    Restaurant(Restaurant &&other);
+
+    // Copy Assignment
+    Restaurant& operator=(const Restaurant &other);
+
+    // Move Assignment
+    Restaurant& operator=(Restaurant &&other);
 
 private:
     bool open;
@@ -58,6 +74,7 @@ private:
 	void createTables(int tables, std::string &tableConfigLine);
 
     void createMenu(std::vector<std::string> lines, int readIndex);
+
 };
 
 #endif
