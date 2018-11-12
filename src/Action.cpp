@@ -45,6 +45,7 @@ void BaseAction::setErrorMsg(string msg) {
 
 OpenTable::OpenTable(int id, std::vector<Customer *> &customersList): tableId(id) , customers(customersList){
 
+
 }
 // This method opens a new table for the list of customers, it needs to check 2 things:
 //1.there exist a table with the given Id.
