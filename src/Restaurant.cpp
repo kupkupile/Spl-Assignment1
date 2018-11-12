@@ -51,14 +51,14 @@ Restaurant::~Restaurant() {
 }
 
 Restaurant::Restaurant(const Restaurant &other){
-  for(int i=0;other.tables.size();i++){
+  for(int i=0;i<other.tables.size();i++){
       Table *table(other.tables[i]);
       tables.push_back(table);
   }
     for(int i=0;i<other.actionsLog.size();i++){
         actionsLog.push_back(other.actionsLog[i]->clone());
     }
-    for(int i=0;other.menu.size();i++){
+    for(int i=0;i<other.menu.size();i++){
         Dish dish(other.menu[i]);
         menu.push_back(dish);
     }
@@ -73,10 +73,11 @@ Restaurant::Restaurant(Restaurant &&other) {
         actionsLog.push_back(other.actionsLog[i]);
         other.actionsLog[i]=nullptr;
     }
-    for(int i=0;other.menu.size();i++){
+    for(int i=0;i<other.menu.size();i++){
         Dish dish(other.menu[i]);
         menu.push_back(dish);
     }
+
 }
 
 Restaurant &Restaurant::operator=(const Restaurant &other) {
@@ -85,18 +86,19 @@ Restaurant &Restaurant::operator=(const Restaurant &other) {
             delete  tables[i];
         }
         tables.clear();
-        for(int i=0;other.tables.size();i++){
+        for(int i=0;i<other.tables.size();i++){
             Table *table(other.tables[i]);
             tables.push_back(table);
         }
         for(int i=0;i<actionsLog.size();i++){
             delete  actionsLog[i];
         }
+        actionsLog.clear();
         for(int i=0;i<other.actionsLog.size();i++){
             actionsLog.push_back(other.actionsLog[i]->clone());
         }
         menu.clear();
-        for(int i=0;other.menu.size();i++){
+        for(int i=0;i<other.menu.size();i++){
             Dish dish(other.menu[i]);
             menu.push_back(dish);
         }
@@ -109,7 +111,7 @@ Restaurant &Restaurant::operator=(Restaurant &&other) {
             delete  tables[i];
         }
         tables.clear();
-        for(int i=0;other.tables.size();i++){
+        for(int i=0;i<other.tables.size();i++){
             Table *table(other.tables[i]);
             delete other.tables[i];
             tables.push_back(table);
@@ -117,12 +119,13 @@ Restaurant &Restaurant::operator=(Restaurant &&other) {
         for(int i=0;i<actionsLog.size();i++){
             delete  actionsLog[i];
         }
+        actionsLog.clear();
         for(int i=0;i<other.actionsLog.size();i++){
             actionsLog.push_back(other.actionsLog[i]->clone());
             delete other.actionsLog[i];
         }
         menu.clear();
-        for(int i=0;other.menu.size();i++){
+        for(int i=0;i<other.menu.size();i++){
             Dish dish(other.menu[i]);
             menu.push_back(dish);
         }

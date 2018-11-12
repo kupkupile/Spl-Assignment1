@@ -334,11 +334,11 @@ BackupRestaurant::BackupRestaurant() {
 }
 
 void BackupRestaurant::act(Restaurant &restaurant) {
-    if(backup!= nullptr)
-        backup = &restaurant;
+    if(backup== nullptr)
+        backup = new Restaurant(restaurant);
     else{
         delete backup;
-        backup = &restaurant;
+        backup = new Restaurant(restaurant);
     }
 }
 
