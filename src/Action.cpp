@@ -22,8 +22,8 @@ void BaseAction::complete() {
 }
 
 void BaseAction::error(std::string errorMsg) {
-    setErrorMsg(errorMsg);
-    setStatus(ERROR);
+    errorMsg=errorMsg;
+    status=ERROR;
     cout<<errorMsg<<endl;
 
 }
@@ -61,10 +61,15 @@ void OpenTable::act(Restaurant &restaurant) {
        tempTable->addCustomer(customers[i]);
        this->complete();
    }
+   customers.clear();
  }
  else
      {
-         this->error("Table does not exist or is already open");
+         for(int i =0;i<customers.size();i++){
+             delete customers[i];
+             customers[i] = nullptr;
+         }
+         error("Table does not exist or is already open");
      }
 }
 
@@ -95,7 +100,7 @@ void Order::act(Restaurant &restaurant) {
     {tempTable->order(restaurant.getMenu());}
     else
     {
-       this->error("Table does not exist or is not open");
+        error("Table does not exist or is not open");
     }
 
 }
@@ -152,7 +157,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
   }
   else
   {
-     error("Cannot move customer");
+      error("Cannot move customer");
   }
 }
 
@@ -176,7 +181,7 @@ Close::Close(int id):tableId(id) {
 void Close::act(Restaurant &restaurant) {
   Table * table = restaurant.getTable(tableId);
   if(table==nullptr||!table->isOpen()) {
-    this->error("Table does not exist or is not open");
+      error("Table does not exist or is not open");
   }
   else{
       int bill = table->getBill();
@@ -329,7 +334,12 @@ BackupRestaurant::BackupRestaurant() {
 }
 
 void BackupRestaurant::act(Restaurant &restaurant) {
-
+    if(backup!= nullptr)
+        backup = &restaurant;
+    else{
+        delete backup;
+        backup = &restaurant;
+    }
 }
 
 BaseAction *BackupRestaurant::clone() {
@@ -351,11 +361,11 @@ RestoreResturant::RestoreResturant() {
 
 void RestoreResturant::act(Restaurant &restaurant) {
     if(backup!= nullptr) {
-        //restaurant = *backup;
+        restaurant = *backup;
         complete();
     }
     else
-       this->error("No backup available");
+        error("No backup available");
 }
 
 BaseAction *RestoreResturant::clone() {
@@ -367,4 +377,48 @@ BaseAction *RestoreResturant::clone() {
 
 std::string RestoreResturant::toString() const {
     return std::__cxx11::string();
+}
+
+BaseAction::~BaseAction() {
+
+}
+
+OpenTable::~OpenTable() {
+
+}
+
+Order::~Order() {
+
+}
+
+MoveCustomer::~MoveCustomer() {
+
+}
+
+Close::~Close() {
+
+}
+
+CloseAll::~CloseAll() {
+
+}
+
+PrintMenu::~PrintMenu() {
+
+}
+
+PrintTableStatus::~PrintTableStatus() {
+
+}
+
+PrintActionsLog::~PrintActionsLog() {
+
+}
+
+BackupRestaurant::~BackupRestaurant() {
+
+}
+
+RestoreResturant::~RestoreResturant() {
+
 }

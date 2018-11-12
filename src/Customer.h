@@ -13,6 +13,7 @@ public:
 	std::string getName() const;
 	int getId() const;
 	virtual Customer* clone()=0;
+	virtual ~Customer();
 private:
 	const std::string name;
 	const int id;
@@ -27,6 +28,8 @@ public:
 
 	Customer *clone() override;
 
+    ~VegetarianCustomer() override;
+
 private:
 };
 
@@ -38,6 +41,8 @@ public:
 	std::string toString() const;
 
 	Customer *clone() override;
+
+    ~CheapCustomer() override;
 
 	bool isOrderedAlready() const;
 
@@ -56,6 +61,8 @@ public:
 
 	Customer *clone() override;
 
+    ~SpicyCustomer() override;
+
 	bool isOrderedAlready() const;
 
 	void setOrderedAlready(bool orderedAlready);
@@ -72,6 +79,8 @@ public:
 	std::string toString() const;
 	bool Ordered(int dishId);
 	Customer *clone() override;
+
+    ~AlchoholicCustomer() override;
 
 	const std::vector<int> &getALCOrdered() const;
 
