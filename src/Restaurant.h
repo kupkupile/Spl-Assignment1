@@ -57,21 +57,21 @@ private:
 
     BaseAction *makeMeAnAction(std::vector<std::string>& tokens);
 
-    BaseAction *creatCloseAllAction(std::vector<std::string> &tokens);
+    BaseAction *creatCloseAllAction();
 
-    BaseAction *createMenuAction(std::vector<std::string> &vector);
+    BaseAction *createMenuAction();
 
     BaseAction *createStatusAction(std::vector<std::string> &tokens);
 
-    BaseAction *createLogAction(std::vector<std::string> &tokens);
+    BaseAction *createLogAction();
 
-    BaseAction *createBackupAction(std::vector<std::string> &vector);
+    BaseAction *createBackupAction();
 
-    BaseAction *createRestoreAction(std::vector<std::string> &tokens);
+    BaseAction *createRestoreAction();
 
 	int getNextValidLineIndex(const std::vector<std::string> &lines, int readIndex) const;
 
-	void createTables(int tables, std::string &tableConfigLine);
+	void createTables(std::string &tableConfigLine);
 
     void createMenu(std::vector<std::string> lines, int readIndex);
 

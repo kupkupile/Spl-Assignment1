@@ -54,10 +54,10 @@ OpenTable::OpenTable(int id, std::vector<Customer *> &customersList): tableId(id
 
 void OpenTable::act(Restaurant &restaurant) {
  Table * tempTable = restaurant.getTable(tableId);
- if(tempTable != nullptr && !tempTable->isOpen() && tempTable->getCapacity() >= customers.size()-1)
+ if(tempTable != nullptr && !tempTable->isOpen() && tempTable->getCapacity() >= (int)customers.size()-1)
  {
    tempTable->openTable();
-   for(int i=0;i<customers.size();i++){
+   for(int i=0;i<(int)customers.size();i++){
        tempTable->addCustomer(customers[i]);
        this->complete();
    }
@@ -65,7 +65,7 @@ void OpenTable::act(Restaurant &restaurant) {
  }
  else
      {
-         for(int i =0;i<customers.size();i++){
+         for(int i =0;i<(int)customers.size();i++){
              delete customers[i];
              customers[i] = nullptr;
          }
@@ -75,7 +75,7 @@ void OpenTable::act(Restaurant &restaurant) {
 
 BaseAction *OpenTable::clone() {
     vector<Customer*> tCustomers;
-    for(int i=0;i<customers.size();i++){
+    for(int i=0;i<(int)customers.size();i++){
         tCustomers.push_back(customers[i]);
     }
     BaseAction* result = new OpenTable(tableId,tCustomers);
@@ -131,7 +131,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
     src->removeCustomer(customer->getId());
     dst->addCustomer(customer);
     std::vector<OrderPair>  tempOrderlist;
-    for(int i = 0;i<src->getOrders().size();i++){
+    for(int i = 0;i<(int)src->getOrders().size();i++){
         if(src->getOrders()[i].first==customer->getId())
         {
             dst->getOrders().push_back(src->getOrders()[i]);
@@ -143,11 +143,11 @@ void MoveCustomer::act(Restaurant &restaurant) {
 
     }
       src->getOrders().clear();
-      for(int i=0;i<tempOrderlist.size();i++){
+      for(int i=0;i<(int)tempOrderlist.size();i++){
           src->getOrders().push_back(tempOrderlist[i]);
       }
 
-    for(int i = 0;i<tempOrderlist.size();i++){
+    for(int i = 0;i<(int)tempOrderlist.size();i++){
         if(tempOrderlist[i].first==customer->getId())
         {
             dst->getOrders().push_back(tempOrderlist[i]);
@@ -242,7 +242,7 @@ PrintMenu::PrintMenu() {
 }
 
 void PrintMenu::act(Restaurant &restaurant) {
-   for(int i=0;i<restaurant.getMenu().size();i++){
+   for(int i=0;i<(int)restaurant.getMenu().size();i++){
        cout<< restaurant.getMenu()[i].getName() << " " << restaurant.getMenu()[i].getType() << " " << restaurant.getMenu()[i].getId() << endl;
    }
 }
@@ -271,10 +271,10 @@ void PrintTableStatus::act(Restaurant &restaurant) {
     {
         cout << "Table " << tableId << "status: " << "open" << endl;
         cout << "Customers:" << endl;
-        for(int i=0;i<toPrint->getCustomers().size();i++){
+        for(int i=0;i<(int)toPrint->getCustomers().size();i++){
             cout<< toPrint->getCustomers()[i]->getId()<< " " << toPrint->getCustomers()[i]->getName()<<endl;
         }
-        for(int j=0;j<toPrint->getOrders().size();j++){
+        for(int j=0;j<(int)toPrint->getOrders().size();j++){
             cout<< toPrint->getOrders()[j].second.getName()<< " " << toPrint->getOrders()[j].second.getPrice()<< " " << toPrint->getOrders()[j].first<<endl;
         }
     }
@@ -304,7 +304,7 @@ PrintActionsLog::PrintActionsLog() {
 void PrintActionsLog::act(Restaurant &restaurant) {
     vector<string> actionLogStrings = restaurant.getActionsLogStrings();
     vector<BaseAction*> actionsLog = restaurant.getActionsLog();
-    for(int i= 0; i<actionLogStrings.size()-1;i++){
+    for(int i= 0; i<(int)actionLogStrings.size()-1;i++){
         string msg;
         if(actionsLog[i]->getStatus()==COMPLETED)
             msg= "Completed";
