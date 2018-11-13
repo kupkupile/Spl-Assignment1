@@ -21,7 +21,7 @@ void Table::addCustomer(Customer *customer) {
 //removes customer with id=id, if not in table, does nothing.
 //might need to add delete of customer.
 void Table::removeCustomer(int id) {
-    for(int i =0;i<customersList.size();i++){
+    for(int i =0;i<(int)customersList.size();i++){
         if(customersList[i]->getId()==id){
             customersList.erase(customersList.begin()+i);
         }
@@ -29,7 +29,7 @@ void Table::removeCustomer(int id) {
 }
 //returns pointer to customer with id=id, if none in table returns nullptr.
 Customer* Table::getCustomer(int id) {
-    for(int i=0 ; i<customersList.size() ; i++){
+    for(int i=0 ; i<(int)customersList.size() ; i++){
         if(customersList[i]->getId()==id)
             return customersList[i];
     }
@@ -46,9 +46,9 @@ std::vector<OrderPair> &Table::getOrders() {
 
 void Table::order(const std::vector<Dish> &menu) {
     std::vector<OrderPair> thisOrder;
-    for (int  i= 0; i < customersList.size(); i++) {
+    for (int  i= 0; i < (int)customersList.size(); i++) {
         std::vector<int> specifidCustomerOrder = customersList[i]->order(menu);
-        for (int j = 0; j < specifidCustomerOrder.size(); ++j) {
+        for (int j = 0; j < (int)specifidCustomerOrder.size(); ++j) {
             int id = specifidCustomerOrder[j];
             for(Dish d:menu){
                 if(d.getId()==id){
@@ -66,7 +66,7 @@ void Table::openTable() {
 }
 //delte customers
 void Table::closeTable() {
-    for (int i = 0;i<customersList.size();i++){
+    for (int i = 0;i<(int)customersList.size();i++){
         delete customersList[i];
 
     }
@@ -97,13 +97,13 @@ Table::~Table() {
 
 
 Table::Table(const Table &other):capacity(other.getCapacity()),open(other.open),customersList(),orderList(other.orderList){
-    for(int i=0;i<other.customersList.size();i++){
+    for(int i=0;i<(int)other.customersList.size();i++){
         customersList.push_back(other.customersList[i]->clone());
     }
 }
 
-Table::Table(Table &&other):capacity(other.getCapacity()),open(other.isOpen()),customersList(),orderList(other.orderList) {
-    for(int i=0;i<other.customersList.size();i++){
+Table::Table(Table &&other):capacity(other.getCapacity()),open(other.open),customersList(),orderList(other.orderList) {
+    for(int i=0;i<(int)other.customersList.size();i++){
         customersList.push_back(other.customersList[i]);
         other.customersList[i]=nullptr;
     }
@@ -113,37 +113,37 @@ Table &Table::operator=(const Table &other) {
     if (this == &other) {
         return *this;
     }
-    for(int i=0;i<customersList.size();i++) {
+    for(int i=0;i<(int)customersList.size();i++) {
         delete customersList[i];
     }
     customersList.clear();
-    for(int i=0;i<other.customersList.size();i++){
+    for(int i=0;i<(int)other.customersList.size();i++){
         customersList.push_back(other.customersList[i]->clone());
     }
     capacity=other.getCapacity();
     open=other.open;
     orderList.clear();
-    for(int i= 0;i<other.orderList.size();i++){
+    for(int i= 0;i<(int)other.orderList.size();i++){
         orderList.push_back(OrderPair(other.orderList[i].first,Dish(other.orderList[i].second.getId(),other.orderList[i].second.getName(),other.orderList[i].second.getPrice(),other.orderList[i].second.getType())));
     }
-
+return *this;
 }
 
 Table &Table::operator=(Table &&other) {
     if (this != &other)
     {
-        for(int i=0;i<customersList.size();i++){
+        for(int i=0;i<(int)customersList.size();i++){
             delete  customersList[i];
-            customersList.clear();
         }
-        for(int i=0;i<other.customersList.size();i++){
+        customersList.clear();
+        for(int i=0;i<(int)other.customersList.size();i++){
             customersList.push_back(other.customersList[i]);
             other.customersList[i]=nullptr;
         }
         capacity=other.getCapacity();
         open=other.open;
         orderList.clear();
-        for(int i= 0;i<other.orderList.size();i++){
+        for(int i= 0;i<(int)other.orderList.size();i++){
             orderList.push_back(OrderPair(other.orderList[i].first,Dish(other.orderList[i].second.getId(),other.orderList[i].second.getName(),other.orderList[i].second.getPrice(),other.orderList[i].second.getType())));
         }
     }
@@ -152,7 +152,7 @@ Table &Table::operator=(Table &&other) {
 }
 
 void Table::clear() {
-    for(int i=0;i<customersList.size();i++){
+    for(int i=0;i<(int)customersList.size();i++){
         delete customersList[i];
 
     }

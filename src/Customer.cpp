@@ -34,16 +34,16 @@ std::vector<int> VegetarianCustomer::order(const std::vector<Dish> &menu) {
     int bev  = -1;
     int bevPrice;
     std::vector<int> dishesOrdered;
-    for(int i = 0;i<menu.size();i++){
-        if(menu[i].getType()==VEG & (foodId == -1 || menu[i].getId() < foodId))
+    for(int i = 0;i<(int)menu.size();i++){
+        if((menu[i].getType()==VEG) & ((foodId == -1) || (menu[i].getId() < foodId)))
                foodId = menu[i].getId();
         if(menu[i].getType()==BVG ) {
             if(bev==-1){bev=menu[i].getId();bevPrice = menu[i].getPrice();}
             else if(menu[i].getPrice()>bevPrice){bev=menu[i].getId();bevPrice=menu[i].getPrice();}
-            else if(menu[i].getPrice()==bevPrice & menu[i].getId()<bev){bev = menu[i].getId();}
+            else if((menu[i].getPrice()==bevPrice )&( menu[i].getId()<bev)){bev = menu[i].getId();}
         }
     }
-       if(foodId!= -1 & bev!=-1){
+       if((foodId!= -1) & (bev!=-1)){
     dishesOrdered.push_back(foodId);
     dishesOrdered.push_back(bev);
 }
@@ -73,9 +73,9 @@ std::vector<int> CheapCustomer::order(const std::vector<Dish> &menu) {
     int foodId = -1;
     int foodPrice;
     if(!orderedAlready) {
-        for (int i = 0; i < menu.size(); i++) {
+        for (int i = 0; i < (int)menu.size(); i++) {
             if ((foodId == -1 || (menu[i].getPrice() < foodPrice)) ||
-                (menu[i].getPrice() == foodPrice & foodId > menu[i].getId())) {
+                ((menu[i].getPrice() == foodPrice) & (foodId > menu[i].getId()))) {
                 foodId = menu[i].getId();
                 foodPrice = menu[i].getPrice();
             }
@@ -126,8 +126,8 @@ std::vector<int> SpicyCustomer::order(const std::vector<Dish> &menu) {
     //did not order yet
     if(!orderedAlready)
     {
-        for (int i = 0; i < menu.size(); i++) {
-            if ((menu[i].getType()==SPC && (foodId==-1 || (menu[i].getPrice() > foodPrice)) || (menu[i].getPrice() == foodPrice & foodId > menu[i].getId())))
+        for (int i = 0; i < (int)menu.size(); i++) {
+            if (((menu[i].getType()==SPC) && ((foodId==-1 )|| (menu[i].getPrice() > foodPrice)) || ((menu[i].getPrice() == foodPrice) & (foodId > menu[i].getId()))))
             {  foodId = menu[i].getId(); foodPrice = menu[i].getPrice();}
         }
         if(foodId!=-1)
@@ -136,8 +136,8 @@ std::vector<int> SpicyCustomer::order(const std::vector<Dish> &menu) {
     }
     //ordered already
     else{
-        for (int i = 0; i < menu.size(); i++) {
-            if ((menu[i].getType()==BVG && (foodId==-1 || (menu[i].getPrice() < foodPrice)) || (menu[i].getPrice() == foodPrice & foodId > menu[i].getId())))
+        for (int i = 0; i < (int)menu.size(); i++) {
+            if (((menu[i].getType()==BVG )&& ((foodId==-1) || (menu[i].getPrice() < foodPrice)) || ((menu[i].getPrice() == foodPrice) & (foodId > menu[i].getId()))))
             {  foodId = menu[i].getId(); foodPrice = menu[i].getPrice();}
         }
 
@@ -178,7 +178,7 @@ AlchoholicCustomer::AlchoholicCustomer(std::string name, int id) : Customer(name
 }
 //A method that will assist to ensure a dish wasnt ordered already
 bool AlchoholicCustomer::Ordered(int dishId) {
-    for(int i=0;i<ALCOrdered.size();i++)
+    for(int i=0;i<(int)ALCOrdered.size();i++)
     {
         if(ALCOrdered[i]==dishId)
             return true;
@@ -188,14 +188,19 @@ bool AlchoholicCustomer::Ordered(int dishId) {
 std::vector<int> AlchoholicCustomer::order(const std::vector<Dish> &menu) {
     int foodId = -1;
     int foodPrice;
-    for (int i = 0; i < menu.size(); i++) {
-        if ((menu[i].getType()==ALC && (!Ordered(menu[i].getId()) &&  (foodId==-1 || (menu[i].getPrice() < foodPrice || menu[i].getPrice() == foodPrice &  foodId < menu[i].getId())))))
+    for (int i = 0; i < (int)menu.size(); i++) {
+        if (((menu[i].getType()==ALC) && (!Ordered(menu[i].getId()) &&  ((foodId==-1) || ((menu[i].getPrice() < foodPrice) || (menu[i].getPrice() == foodPrice )&  (foodId < menu[i].getId()))))))
         {  foodId = menu[i].getId(); foodPrice = menu[i].getPrice();}
     }
         if(foodId!=-1)
-        {ALCOrdered.push_back(foodId);return std::vector<int>(1,foodId);}
+        {
+            ALCOrdered.push_back(foodId);
+            return std::vector<int>(1,foodId);
+        }
          else
-            {return std::vector<int>();}
+            {
+             return std::vector<int>();
+            }
 
 }
 

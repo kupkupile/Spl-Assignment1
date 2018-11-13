@@ -31,10 +31,10 @@ Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu()
     }
     int readIndex=0;
     readIndex = getNextValidLineIndex(lines, readIndex);
-    int numOfTables = stoi(lines[readIndex]);
+
     readIndex++;
     readIndex = getNextValidLineIndex(lines,readIndex);
-    createTables(numOfTables,lines[readIndex]);
+    createTables(lines[readIndex]);
     readIndex++;
     readIndex = getNextValidLineIndex(lines,readIndex);
     createMenu(lines,readIndex);
@@ -51,88 +51,109 @@ Restaurant::~Restaurant() {
 }
 
 Restaurant::Restaurant(const Restaurant &other){
-  for(int i=0;other.tables.size();i++){
-      Table *table(other.tables[i]);
+  for(int i=0;i<(int)other.tables.size();i++){
+      Table* table= new Table(*other.tables[i]);
       tables.push_back(table);
   }
-    for(int i=0;i<other.actionsLog.size();i++){
+    for(int i=0;i<(int)other.actionsLog.size();i++){
         actionsLog.push_back(other.actionsLog[i]->clone());
     }
-    for(int i=0;other.menu.size();i++){
+    for(int i=0;i<(int)other.menu.size();i++){
         Dish dish(other.menu[i]);
         menu.push_back(dish);
     }
+    for(int i=0;i<(int)other.getActionsLogStrings().size();i++){
+        actionsLogStrings.push_back(other.getActionsLogStrings()[i]);
+    }
+    open=other.open;
 }
 
 Restaurant::Restaurant(Restaurant &&other) {
-    for(int i=0;i<other.tables.size();i++){
+    for(int i=0;i<(int)other.tables.size();i++){
         tables.push_back(other.tables[i]);
         other.tables[i]=nullptr;
     }
-    for(int i=0;i<other.actionsLog.size();i++){
+    for(int i=0;i<(int)other.actionsLog.size();i++){
         actionsLog.push_back(other.actionsLog[i]);
         other.actionsLog[i]=nullptr;
     }
-    for(int i=0;other.menu.size();i++){
+    for(int i=0;i<(int)other.menu.size();i++){
         Dish dish(other.menu[i]);
         menu.push_back(dish);
     }
+    for(int i=0;i<(int)other.getActionsLogStrings().size();i++){
+        actionsLogStrings.push_back(other.getActionsLogStrings()[i]);
+    }
+    open=other.open;
+
 }
 
 Restaurant &Restaurant::operator=(const Restaurant &other) {
     if (this != &other) {
-        for(int i=0;i<tables.size();i++){
+        for(int i=0;i<(int)tables.size();i++){
             delete  tables[i];
         }
         tables.clear();
-        for(int i=0;other.tables.size();i++){
-            Table *table(other.tables[i]);
+        for(int i=0;i<(int)other.tables.size();i++){
+            Table* table= new Table(*other.tables[i]);
             tables.push_back(table);
         }
-        for(int i=0;i<actionsLog.size();i++){
+        for(int i=0;i<(int)actionsLog.size();i++){
             delete  actionsLog[i];
         }
-        for(int i=0;i<other.actionsLog.size();i++){
+        actionsLog.clear();
+        for(int i=0;i<(int)other.actionsLog.size();i++){
             actionsLog.push_back(other.actionsLog[i]->clone());
         }
         menu.clear();
-        for(int i=0;other.menu.size();i++){
+        for(int i=0;i<(int)other.menu.size();i++){
             Dish dish(other.menu[i]);
             menu.push_back(dish);
         }
+        actionsLogStrings.clear();
+        for(int i=0;i<(int)other.getActionsLogStrings().size();i++){
+            actionsLogStrings.push_back(other.getActionsLogStrings()[i]);
+        }
     }
+    return *this;
 }
 
 Restaurant &Restaurant::operator=(Restaurant &&other) {
     if (this != &other) {
-        for(int i=0;i<tables.size();i++){
+        for(int i=0;i<(int)tables.size();i++){
             delete  tables[i];
         }
         tables.clear();
-        for(int i=0;other.tables.size();i++){
-            Table *table(other.tables[i]);
+        for(int i=0;i<(int)other.tables.size();i++){
+            Table* table= new Table(*other.tables[i]);
             delete other.tables[i];
             tables.push_back(table);
         }
-        for(int i=0;i<actionsLog.size();i++){
+        for(int i=0;i<(int)actionsLog.size();i++){
             delete  actionsLog[i];
         }
-        for(int i=0;i<other.actionsLog.size();i++){
+        actionsLog.clear();
+        for(int i=0;i<(int)other.actionsLog.size();i++){
             actionsLog.push_back(other.actionsLog[i]->clone());
             delete other.actionsLog[i];
         }
         menu.clear();
-        for(int i=0;other.menu.size();i++){
+        for(int i=0;i<(int)other.menu.size();i++){
             Dish dish(other.menu[i]);
             menu.push_back(dish);
         }
+        actionsLogStrings.clear();
+        for(int i=0;i<(int)other.getActionsLogStrings().size();i++){
+            actionsLogStrings.push_back(other.getActionsLogStrings()[i]);
+        }
     }
+    return *this;
 }
 
 int Restaurant::getNextValidLineIndex(const vector<string> &lines, int readIndex) const {
     bool stop=false;
     while(!stop){
-        if(readIndex<lines.size()){
+        if(readIndex<(int)lines.size()){
             if(lines[readIndex].empty())
                 readIndex++;
             else if(lines[readIndex][0]=='#')
@@ -180,12 +201,12 @@ int Restaurant::getNumOfTables() const {
     return tables.size();
 }
 
-std::vector<std::string> Restaurant::getActionsLogStrings() {
+const std::vector<std::string> Restaurant::getActionsLogStrings() const {
     return actionsLogStrings;
 }
 
 Table *Restaurant::getTable(int ind) {
-    if(ind<tables.size()){
+    if(ind<(int)tables.size()){
         return tables[ind];
     }
     return nullptr;
@@ -202,7 +223,7 @@ std::vector<Dish> &Restaurant::getMenu() {
 OpenTable* Restaurant::createOpenTable(std::vector<std::string>& tokens) {
     int index = stoi(tokens[1]);
     vector<Customer*> customers;
-    for (int i = 2; i < tokens.size(); ++i) {
+    for (int i = 2; i < (int)tokens.size(); ++i) {
         customers.push_back(creatCustomer(tokens[i],tokens[i+1]));
         i++;
     }
@@ -235,7 +256,7 @@ Customer* Restaurant::creatCustomer(string name, string type) {
         customerindex++;
         return returnCust;
     }
-
+    return nullptr;
 }
 
 Order *Restaurant::createOrder(std::vector<std::string>& tokens) {
@@ -274,34 +295,34 @@ BaseAction *Restaurant::makeMeAnAction(std::vector<std::string> &tokens) {
         ans = creatCloseAction(tokens);
     }
     else if(tokens[0]=="closeall"){
-        ans = creatCloseAllAction(tokens);
+        ans = creatCloseAllAction();
     }
     else if(tokens[0]=="menu"){
-        ans = createMenuAction(tokens);
+        ans = createMenuAction();
     }
     else if(tokens[0]=="status"){
         ans = createStatusAction(tokens);
     }
     else if(tokens[0]=="log"){
-        ans = createLogAction(tokens);
+        ans = createLogAction();
     }
     else if(tokens[0]=="backup"){
-        ans = createBackupAction(tokens);
+        ans = createBackupAction();
     }
     else if(tokens[0]=="restore"){
-        ans = createRestoreAction(tokens);
+        ans = createRestoreAction();
     }
     else
         return nullptr;
     return ans;
 }
 
-BaseAction *Restaurant::creatCloseAllAction(std::vector<std::string> &tokens) {
+BaseAction *Restaurant::creatCloseAllAction() {
     CloseAll* ans = new CloseAll();
     return ans;
 }
 
-BaseAction *Restaurant::createMenuAction(std::vector<std::string> &vector) {
+BaseAction *Restaurant::createMenuAction() {
     PrintMenu* ans = new PrintMenu();
     return ans;
 }
@@ -311,22 +332,22 @@ BaseAction *Restaurant::createStatusAction(std::vector<std::string> &tokens) {
     return ans;
 }
 
-BaseAction *Restaurant::createLogAction(std::vector<std::string> &tokens) {
+BaseAction *Restaurant::createLogAction() {
     PrintActionsLog* ans = new PrintActionsLog();
     return ans;
 }
 
-BaseAction *Restaurant::createBackupAction(std::vector<std::string> &vector) {
+BaseAction *Restaurant::createBackupAction() {
     BackupRestaurant* ans  = new BackupRestaurant();
     return ans;
 }
 
-BaseAction *Restaurant::createRestoreAction(std::vector<std::string> &tokens) {
+BaseAction *Restaurant::createRestoreAction() {
     RestoreResturant* ans = new RestoreResturant();
     return ans;
 }
 
-void Restaurant::createTables(int numOftables, string &tableConfigLine) {
+void Restaurant::createTables(string &tableConfigLine) {
     std::vector<std::string> tokens;
     string delims = " ,";
     std::size_t start = tableConfigLine.find_first_not_of(delims), end = 0;
@@ -337,18 +358,18 @@ void Restaurant::createTables(int numOftables, string &tableConfigLine) {
     }
     if(start != std::string::npos)
         tokens.push_back(tableConfigLine.substr(start));
-    for(int i =0;i<tokens.size();i++){
+    for(int i =0;i<(int)tokens.size();i++){
         Table* t = new Table(stoi(tokens[i]));
         tables.push_back(t);
     }
 }
 
 void Restaurant::clear() {
-    for(int i=0;i<tables.size();i++){
+    for(int i=0;i<(int)tables.size();i++){
         delete tables[i];
 
     }
-    for(int i=0;i<actionsLog.size();i++){
+    for(int i=0;i<(int)actionsLog.size();i++){
         delete actionsLog[i];
 
     }
@@ -359,7 +380,7 @@ void Restaurant::clear() {
 
 void Restaurant::createMenu(std::vector<std::string> lines, int readIndex) {
     int dishIndex =0;
-    while(readIndex<lines.size()){
+    while(readIndex<(int)lines.size()){
         std::vector<std::string> tokens;
         string delims = ",";
         std::size_t start = lines[readIndex].find_first_not_of(delims), end = 0;
