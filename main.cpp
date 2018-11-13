@@ -15,7 +15,7 @@ int main(int argc, char** argv){
     string configurationFile = argv[1];
     */
 
-    freopen("/home//levletom//CLionProjects//SPL_Assignment1//input_example1","r",stdin);
+    freopen("/home//amitk//CLionProjects//Spl//Project1//input_example1","r",stdin);
     Restaurant rest("configFile.txt");
     rest.start();
     if(backup!=nullptr){
