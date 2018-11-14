@@ -16,8 +16,8 @@ int main(int argc, char** argv){
     */
     ///home//levletom//CLionProjects//SPL_Assignment1
 
-    freopen("/home//levletom//CLionProjects//SPL_Assignment1//input_example1","r",stdin);
-    freopen ("/home//levletom//CLionProjects//SPL_Assignment1//file1.txt","w",stdout);
+    freopen("/home//levletom//CLionProjects//SPL_Assignment1//input_example2","r",stdin);
+    freopen ("/home//levletom//CLionProjects//SPL_Assignment1//file2.txt","w",stdout);
     Restaurant rest("configFile.txt");
     rest.start();
     if(backup!=nullptr){

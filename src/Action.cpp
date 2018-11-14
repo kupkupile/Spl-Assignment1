@@ -22,9 +22,9 @@ void BaseAction::complete() {
 }
 
 void BaseAction::error(std::string errorMsg) {
-    this->errorMsg=errorMsg;
+    this->errorMsg="Error: "+errorMsg;
     status=ERROR;
-    cout<<errorMsg<<endl;
+    cout<<this->errorMsg<<endl;
 
 }
 
@@ -73,7 +73,7 @@ void OpenTable::act(Restaurant &restaurant) {
              delete customers[i];
              customers[i] = nullptr;
          }
-         error("Error: Table does not exist or is already open");
+         error("Table does not exist or is already open");
      }
 }
 
@@ -332,7 +332,7 @@ void PrintActionsLog::act(Restaurant &restaurant) {
         if(actionsLog[i]->getStatus()==COMPLETED)
             msg= "Completed";
         else if(actionsLog[i]->getStatus()==ERROR)
-            msg = "Error: " +actionsLog[i]->getPublicErrorMsg();
+            msg =  actionsLog[i]->getPublicErrorMsg();
         else
             msg = "PENDING";
         cout<<actionLogStrings[i]<< " "<< msg<<endl;
@@ -363,6 +363,7 @@ void BackupRestaurant::act(Restaurant &restaurant) {
         delete backup;
         backup = new Restaurant(restaurant);
     }
+    complete();
 }
 
 BaseAction *BackupRestaurant::clone() {
