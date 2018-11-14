@@ -97,7 +97,8 @@ Order::Order(int id): tableId(id) {
 void Order::act(Restaurant &restaurant) {
     Table * tempTable(restaurant.getTable(tableId));
     if(tempTable != nullptr && tempTable->isOpen())
-    {tempTable->order(restaurant.getMenu());}
+    {tempTable->order(restaurant.getMenu());
+      complete();}
     else
     {
         error("Table does not exist or is not open");
@@ -154,6 +155,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
            // src.removeCustomersOrders(customerId);
         }
     }
+    complete();
   }
   else
   {
@@ -284,7 +286,7 @@ void PrintTableStatus::act(Restaurant &restaurant) {
     Table *toPrint = restaurant.getTable(tableId);
     if(toPrint->isOpen())
     {
-        cout << "Table " << tableId << " status:" << "open" << endl;
+        cout << "Table " << tableId << " status:" << " open" << endl;
         cout << "Customers:" << endl;
         for(int i=0;i<(int)toPrint->getCustomers().size();i++){
             cout<< toPrint->getCustomers()[i]->getId()<< " " << toPrint->getCustomers()[i]->getName()<<endl;
@@ -297,7 +299,7 @@ void PrintTableStatus::act(Restaurant &restaurant) {
     else{
         cout << "Table " << tableId << " status: " << "closed" << endl;
     }
-
+    complete();
 }
 
 BaseAction *PrintTableStatus::clone() {
