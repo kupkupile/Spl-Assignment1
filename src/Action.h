@@ -21,7 +21,7 @@ public:
     virtual BaseAction* clone()=0;
     void setStatus(ActionStatus status);
     virtual ~BaseAction();
-
+	std::string getPublicErrorMsg() const;
     void setErrorMsg(std::string msg);
 protected:
     void complete();
