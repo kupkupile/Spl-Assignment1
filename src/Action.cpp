@@ -22,10 +22,9 @@ void BaseAction::complete() {
 }
 
 void BaseAction::error(std::string errorMsg) {
-    errorMsg=errorMsg;
+    this->errorMsg=errorMsg;
     status=ERROR;
     cout<<errorMsg<<endl;
-
 }
 
 std::string BaseAction::getErrorMsg() const {
@@ -328,7 +327,7 @@ void PrintActionsLog::act(Restaurant &restaurant) {
         if(actionsLog[i]->getStatus()==COMPLETED)
             msg= "Completed";
         else if(actionsLog[i]->getStatus()==ERROR)
-            msg = "Error: "+getErrorMsg();
+            msg = "Error: " + getErrorMsg();
         else
             msg = "PENDING";
         cout<<actionLogStrings[i]<< " "<< msg<<endl;
