@@ -332,7 +332,7 @@ void PrintActionsLog::act(Restaurant &restaurant) {
         if(actionsLog[i]->getStatus()==COMPLETED)
             msg= "Completed";
         else if(actionsLog[i]->getStatus()==ERROR)
-            msg = "Error: " +actionsLog[i]->getPublicErrorMsg();
+            msg = "Error: " + actionsLog[i]->getPublicErrorMsg();
         else
             msg = "PENDING";
         cout<<actionLogStrings[i]<< " "<< msg<<endl;
