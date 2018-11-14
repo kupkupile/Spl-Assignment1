@@ -4,6 +4,7 @@
 
 #include <unordered_map>
 #include "Table.h"
+#include <iostream>
 
 Table::Table(int t_capacity):capacity(t_capacity),customersList(),orderList()  {
    open = false;
@@ -59,6 +60,9 @@ void Table::order(const std::vector<Dish> &menu) {
             }
         }
     }
+   for(int i=0;i<thisOrder.size();i++){
+       std::cout<<getCustomer(thisOrder[i].first)->getName()<<  " Ordered " << thisOrder[i].second.getName()<<std::endl;
+   }
 }
 
 void Table::openTable() {

@@ -16,11 +16,13 @@ int main(int argc, char** argv){
     */
 
     freopen("/home//amitk//CLionProjects//Spl//Project1//input_example1","r",stdin);
+    freopen ("/home//amitk//CLionProjects//Spl//Project1//file1.txt","w",stdout);
     Restaurant rest("configFile.txt");
     rest.start();
     if(backup!=nullptr){
         delete backup;
         backup = nullptr;
     }
+    fclose (stdout);
     return 0;
 }

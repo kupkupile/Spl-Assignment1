@@ -24,4 +24,5 @@ status 3
 open 1 Luna,veg Ginny,spc
 restore
 log
+menu
 closeall

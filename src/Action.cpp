@@ -243,7 +243,22 @@ PrintMenu::PrintMenu() {
 
 void PrintMenu::act(Restaurant &restaurant) {
    for(int i=0;i<(int)restaurant.getMenu().size();i++){
-       cout<< restaurant.getMenu()[i].getName() << " " << restaurant.getMenu()[i].getType() << " " << restaurant.getMenu()[i].getId() << endl;
+       cout<< restaurant.getMenu()[i].getName() << " ";
+       if(restaurant.getMenu()[i].getType()==0)
+       {
+           cout<<"VEG";
+       }
+       if(restaurant.getMenu()[i].getType()==1)
+       {
+           cout<<"SPC";
+       }if(restaurant.getMenu()[i].getType()==2)
+       {
+           cout<<"BVG";
+       }if(restaurant.getMenu()[i].getType()==3)
+       {
+           cout<<"ALC";
+       }
+       std::cout<< " " << restaurant.getMenu()[i].getPrice()<<"NIS" << endl;
    }
 }
 
@@ -269,17 +284,18 @@ void PrintTableStatus::act(Restaurant &restaurant) {
     Table *toPrint = restaurant.getTable(tableId);
     if(toPrint->isOpen())
     {
-        cout << "Table " << tableId << "status: " << "open" << endl;
+        cout << "Table " << tableId << " status:" << "open" << endl;
         cout << "Customers:" << endl;
         for(int i=0;i<(int)toPrint->getCustomers().size();i++){
             cout<< toPrint->getCustomers()[i]->getId()<< " " << toPrint->getCustomers()[i]->getName()<<endl;
         }
         for(int j=0;j<(int)toPrint->getOrders().size();j++){
-            cout<< toPrint->getOrders()[j].second.getName()<< " " << toPrint->getOrders()[j].second.getPrice()<< " " << toPrint->getOrders()[j].first<<endl;
+            cout<< toPrint->getOrders()[j].second.getName()<< " " << toPrint->getOrders()[j].second.getPrice()<< "NIS " << toPrint->getOrders()[j].first<<endl;
         }
+        cout<<"Current Bill: "<< toPrint->getBill()<<endl;
     }
     else{
-        cout << "Table " << tableId << "status: " << "closed" << endl;
+        cout << "Table " << tableId << " status: " << "closed" << endl;
     }
 
 }
