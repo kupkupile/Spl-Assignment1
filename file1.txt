@@ -10,7 +10,7 @@ Idan ordered Water
 Elad ordered Wine
 Table 1 status: open
 Customers:
-0 Alice
+0 Alicehjvjhbmn mn
 Orders:
 Water 10NIS 0
 Current Bill: 10NIS
@@ -39,6 +39,6 @@ order 2 Completed
 move 1 2 1 Completed
 status 1 Completed
 status 2 Completed
-open 2 Jon,spc Sam,spc Error: 
+open 2 Jon,spc Sam,spc Error: Error: Table does not exist or is already open
 Table 1 was closed. Bill 10NIS
 Table 2 was closed. Bill 320NIS
