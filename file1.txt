@@ -1,23 +1,25 @@
 Restaurant is now open!
-Alice Ordered Water
-Bob Ordered Beer
-Bob Ordered Wine
-Idan Ordered Salad
-Idan Ordered Water
-Elad Ordered Beer
-Idan Ordered Salad
-Idan Ordered Water
-Elad Ordered Wine
+Alice ordered Water
+Bob ordered Beer
+Bob ordered Wine
+Idan ordered Salad
+Idan ordered Water
+Elad ordered Beer
+Idan ordered Salad
+Idan ordered Water
+Elad ordered Wine
 Table 1 status: open
 Customers:
 0 Alice
+Orders:
 Water 10NIS 0
-Current Bill: 10
+Current Bill: 10NIS
 Table 2 status: open
 Customers:
 2 Idan
 3 Elad
 1 Bob
+Orders:
 Salad 40NIS 2
 Water 10NIS 2
 Beer 50NIS 3
@@ -26,8 +28,8 @@ Water 10NIS 2
 Wine 60NIS 3
 Beer 50NIS 1
 Wine 60NIS 1
-Current Bill: 320
-Table does not exist or is already open
+Current Bill: 320NIS
+Error: Table does not exist or is already open
 open 1 Alice,chp Bob,alc Completed
 order 1 Completed
 order 1 Completed
