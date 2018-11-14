@@ -1,28 +1,12 @@
-open 1 Harry,spc Ron,chp Hermionie,veg
-open 2 Sirius,alc Remus,veg
+open 1 Alice,chp Bob,alc
 order 1
-order 2
-status 1
-move 2 1 3
 order 1
-status 2
-status 1
-backup
-log
-open 3 Albus,alc Severus,chp Minerva,veg
-order 3
-restore
-order 3
+open 2 Idan,veg Elad,alc
 order 2
+order 2
+move 1 2 1
 status 1
-backup
 status 2
-status 3
-restore
-backup
-status 3
-open 1 Luna,veg Ginny,spc
-restore
+open 2 Jon,spc Sam,spc
 log
-menu
 closeall
