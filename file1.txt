@@ -8,12 +8,12 @@ Elad Ordered Beer
 Idan Ordered Salad
 Idan Ordered Water
 Elad Ordered Wine
-Table 1 status:open
+Table 1 status: open
 Customers:
 0 Alice
 Water 10NIS 0
 Current Bill: 10
-Table 2 status:open
+Table 2 status: open
 Customers:
 2 Idan
 3 Elad
