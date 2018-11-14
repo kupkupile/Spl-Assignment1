@@ -73,7 +73,7 @@ void OpenTable::act(Restaurant &restaurant) {
              delete customers[i];
              customers[i] = nullptr;
          }
-         error("Table does not exist or is already open");
+         error("Error: Table does not exist or is already open");
      }
 }
 
@@ -295,10 +295,11 @@ void PrintTableStatus::act(Restaurant &restaurant) {
         for(int i=0;i<(int)toPrint->getCustomers().size();i++){
             cout<< toPrint->getCustomers()[i]->getId()<< " " << toPrint->getCustomers()[i]->getName()<<endl;
         }
+        cout<< "Orders:" << endl;
         for(int j=0;j<(int)toPrint->getOrders().size();j++){
             cout<< toPrint->getOrders()[j].second.getName()<< " " << toPrint->getOrders()[j].second.getPrice()<< "NIS " << toPrint->getOrders()[j].first<<endl;
         }
-        cout<<"Current Bill: "<< toPrint->getBill()<<endl;
+        cout<<"Current Bill: "<< toPrint->getBill()<< "NIS"<<endl;
     }
     else{
         cout << "Table " << tableId << " status: " << "closed" << endl;
