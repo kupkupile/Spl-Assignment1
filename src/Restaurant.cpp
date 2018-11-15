@@ -20,7 +20,7 @@ Restaurant::Restaurant():open(),tables(),menu(),actionsLog() {
 Restaurant::Restaurant(const std::string &configFilePath):open(),tables(),menu(),actionsLog(),actionsLogStrings() {
     open=false;
     std::ifstream myFile;
-    myFile.open("/home//levletom//CLionProjects//SPL_Assignment1//config2.txt");
+    myFile.open("/home//levletom//CLionProjects//SPL_Assignment1//config3.txt");
     std::vector<std::string> lines;
     std::string line;
 
@@ -154,7 +154,7 @@ int Restaurant::getNextValidLineIndex(const vector<string> &lines, int readIndex
     bool stop=false;
     while(!stop){
         if(readIndex<(int)lines.size()){
-            if(lines[readIndex].empty())
+            if(lines[readIndex].empty()||lines[readIndex]=="\r")
                 readIndex++;
             else if(lines[readIndex][0]=='#')
                 readIndex++;
