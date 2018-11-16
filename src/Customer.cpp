@@ -189,7 +189,7 @@ std::vector<int> AlchoholicCustomer::order(const std::vector<Dish> &menu) {
     int foodId = -1;
     int foodPrice;
     for (int i = 0; i < (int)menu.size(); i++) {
-        if (((menu[i].getType()==ALC) && (!Ordered(menu[i].getId()) &&  ((foodId==-1) || ((menu[i].getPrice() < foodPrice) || (menu[i].getPrice() == foodPrice )&  (foodId < menu[i].getId()))))))
+        if (((menu[i].getType()==ALC) && (!Ordered(menu[i].getId())) &&  ((foodId==-1) || ((menu[i].getPrice() < foodPrice) || (menu[i].getPrice() == foodPrice ) &  (foodId > menu[i].getId())))))
         {  foodId = menu[i].getId(); foodPrice = menu[i].getPrice();}
     }
         if(foodId!=-1)

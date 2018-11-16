@@ -1,0 +1,84 @@
+#annoying message
+
+
+
+#annoying message
+#annoying message
+
+
+#annoying message
+#Number of tables
+10
+#annoying message
+#annoying message
+
+
+#annoying message
+
+#annoying message
+#annoying message
+#Tables Cap
+
+
+1,2,3,4,5,6,7,8,9,10
+#annoying message
+
+
+
+#annoying message
+#Menu
+
+Beverage01,BVG,50
+#annoying message
+
+#annoying message
+Vegetarian01,VEG,50
+#annoying message
+Alcoholic01,ALC,50
+Spicy01,SPC,50
+
+Vegetarian02,VEG,75
+#annoying message
+#annoying message
+Beverage02,BVG,75
+
+
+Alcoholic02,ALC,75
+#annoying message
+
+
+#annoying message
+Spicy02,SPC,75
+Vegetarian03,VEG,35
+Beverage03,BVG,35
+Alcoholic03,ALC,35
+Spicy03,SPC,35
+Vegetarian04,VEG,100
+Beverage04,BVG,100
+
+Alcoholic04,ALC,100
+Spicy04,SPC,100
+Vegetarian05,VEG,50
+Beverage05,BVG,50
+Alcoholic05,ALC,50
+Spicy05,SPC,50
+Vegetarian06,VEG,15
+
+
+Beverage06,BVG,15
+#annoying message
+Alcoholic06,ALC,15
+#annoying message
+Spicy06,SPC,15
+
+
+
+Vegetarian07,VEG,15
+Beverage07,BVG,15
+Alcoholic07,ALC,15
+Spicy07,SPC,15
+
+Vegetarian 0 8,VEG,100
+Beverage 0 8,BVG,100
+Alcoholic 0 8,ALC,100
+Spicy 0 8 ,SPC,100

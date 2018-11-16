@@ -14,10 +14,10 @@ int main(int argc, char** argv){
     /*
     string configurationFile = argv[1];
     */
-    ///home//levletom//CLionProjects//SPL_Assignment1
 
-    freopen("/home//levletom//CLionProjects//SPL_Assignment1//input_example3.txt","r",stdin);
-    freopen ("/home//levletom//CLionProjects//SPL_Assignment1//file3.txt","w",stdout);
+
+    freopen("/home//amitk//CLionProjects//Spl//Project1//Tester//inputFiles//cmd3.txt","r",stdin);
+    freopen ("/home//amitk//CLionProjects//Spl//Project1//file3.txt","w",stdout);
     Restaurant rest("configFile.txt");
     rest.start();
     if(backup!=nullptr){
