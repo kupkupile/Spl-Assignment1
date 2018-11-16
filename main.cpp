@@ -16,8 +16,8 @@ int main(int argc, char** argv){
     */
 
 
-    freopen("/home//amitk//CLionProjects//Spl//Project1//input_example2","r",stdin);
-    freopen ("/home//amitk//CLionProjects//Spl//Project1//file2.txt","w",stdout);
+    freopen("/home//amitk//CLionProjects//Spl//Project1//Tester//inputFiles//cmd3.txt","r",stdin);
+    freopen ("/home//amitk//CLionProjects//Spl//Project1//file3.txt","w",stdout);
     Restaurant rest("configFile.txt");
     rest.start();
     if(backup!=nullptr){
