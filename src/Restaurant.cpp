@@ -154,7 +154,7 @@ int Restaurant::getNextValidLineIndex(const vector<string> &lines, int readIndex
     bool stop=false;
     while(!stop){
         if(readIndex<(int)lines.size()){
-            if(lines[readIndex].empty())
+            if(lines[readIndex].empty()||lines[readIndex]=="\r")
                 readIndex++;
             else if(lines[readIndex][0]=='#')
                 readIndex++;

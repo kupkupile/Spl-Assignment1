@@ -57,7 +57,9 @@ OpenTable::OpenTable(int id, std::vector<Customer *> &customersList): tableId(id
 //3.this given table can hold the number of customers given.
 
 void OpenTable::act(Restaurant &restaurant) {
- Table * tempTable = restaurant.getTable(tableId);
+    Table* tempTable = nullptr;
+    if(tableId>=0)
+        tempTable = restaurant.getTable(tableId);
  if(tempTable != nullptr && !tempTable->isOpen() && tempTable->getCapacity() >= (int)customers.size()-1)
  {
    tempTable->openTable();
@@ -99,7 +101,9 @@ Order::Order(int id): tableId(id) {
 }
 
 void Order::act(Restaurant &restaurant) {
-    Table * tempTable(restaurant.getTable(tableId));
+    Table* tempTable = nullptr;
+    if(tableId>=0)
+        tempTable=restaurant.getTable(tableId);
     if(tempTable != nullptr && tempTable->isOpen())
     {tempTable->order(restaurant.getMenu());
       complete();}
@@ -128,9 +132,15 @@ MoveCustomer::MoveCustomer(int src, int dst, int customerId): srcTable(src),dstT
 }
 
 void MoveCustomer::act(Restaurant &restaurant) {
-  Table * src = restaurant.getTable(srcTable);
-  Table * dst = restaurant.getTable(dstTable);
-  Customer * customer = src->getCustomer(id);
+    Table* src = nullptr;
+    Table* dst = nullptr;
+    Customer* customer = nullptr;
+    if(srcTable>=0)
+        src = restaurant.getTable(srcTable);
+    if(dstTable>=0)
+        dst = restaurant.getTable(dstTable);
+    if(id>=0 && src!= nullptr)
+        customer = src->getCustomer(id);
   if(src!=nullptr && src->isOpen() && dst!=nullptr && dst->isOpen() && customer!=nullptr && dst->getNumOfAvailbleSeats()>0)
   {
     src->removeCustomer(customer->getId());
@@ -159,6 +169,8 @@ void MoveCustomer::act(Restaurant &restaurant) {
            // src.removeCustomersOrders(customerId);
         }
     }
+    if(src->getCustomers().empty())
+        src->closeTable();
     complete();
   }
   else
@@ -185,7 +197,9 @@ Close::Close(int id):tableId(id) {
 }
 
 void Close::act(Restaurant &restaurant) {
-  Table * table = restaurant.getTable(tableId);
+    Table* table = nullptr;
+    if(tableId>=0)
+        table = restaurant.getTable(tableId);
   if(table==nullptr||!table->isOpen()) {
       error("Table does not exist or is not open");
   }
@@ -266,6 +280,7 @@ void PrintMenu::act(Restaurant &restaurant) {
        }
        std::cout<< " " << restaurant.getMenu()[i].getPrice()<<"NIS" << endl;
    }
+   complete();
 }
 
 BaseAction *PrintMenu::clone() {
@@ -337,6 +352,7 @@ void PrintActionsLog::act(Restaurant &restaurant) {
             msg = "PENDING";
         cout<<actionLogStrings[i]<< " "<< msg<<endl;
     }
+    complete();
 }
 
 BaseAction *PrintActionsLog::clone() {
