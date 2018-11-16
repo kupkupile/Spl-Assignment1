@@ -327,7 +327,7 @@ PrintActionsLog::PrintActionsLog() {
 void PrintActionsLog::act(Restaurant &restaurant) {
     vector<string> actionLogStrings = restaurant.getActionsLogStrings();
     vector<BaseAction*> actionsLog = restaurant.getActionsLog();
-    for(int i= 0; i<(int)actionLogStrings.size()-1;i++){
+    for(int i= 0; i<(int)actionsLog.size();i++){
         string msg;
         if(actionsLog[i]->getStatus()==COMPLETED)
             msg= "Completed";

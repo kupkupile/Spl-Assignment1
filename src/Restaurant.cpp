@@ -175,7 +175,7 @@ void Restaurant::start() {
     std::string input;
     while(open){
       getline(cin,input);
-      actionsLogStrings.push_back(input);
+      string inputString = input;
       std::vector<std::string> tokens;
       string delims = " ,";
       std::size_t start = input.find_first_not_of(delims), end = 0;
@@ -189,7 +189,9 @@ void Restaurant::start() {
 
       BaseAction* specificAction = makeMeAnAction(tokens);
       specificAction->act(*this);
+      actionsLogStrings.push_back(inputString);
       actionsLog.push_back(specificAction);
+
 
 
     }
