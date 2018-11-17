@@ -65,8 +65,9 @@ void OpenTable::act(Restaurant &restaurant) {
    tempTable->openTable();
    for(int i=0;i<(int)customers.size();i++){
        tempTable->addCustomer(customers[i]);
-       this->complete();
+
    }
+     this->complete();
    customers.clear();
  }
  else
