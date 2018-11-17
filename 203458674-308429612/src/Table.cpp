@@ -60,7 +60,7 @@ void Table::order(const std::vector<Dish> &menu) {
             }
         }
     }
-   for(int i=0;i<thisOrder.size();i++){
+   for(int i=0;i<(int)thisOrder.size();i++){
        std::cout<<getCustomer(thisOrder[i].first)->getName()<<  " ordered " << thisOrder[i].second.getName()<<std::endl;
    }
 }
