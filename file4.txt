@@ -1,0 +1,737 @@
+Restaurant is now open!
+Error: Table does not exist or is not open
+yuval ordered Potato
+yuval ordered Orange
+Error: No backup available
+Table 0 status: closed
+Table 1 status: closed
+Table 2 status: open
+Customers:
+0 yuval
+Orders:
+Potato 40NIS 0
+Orange 20NIS 0
+Current Bill: 60NIS
+Tirosh ALC 60NIS
+Beer ALC 50NIS
+Wine ALC 50NIS
+Wisky ALC 50NIS
+Potato VEG 40NIS
+Tali VEG 30NIS
+Carrot VEG 30NIS
+Tomato VEG 30NIS
+Water BVG 10NIS
+Juice BVG 10NIS
+Orange BVG 20NIS
+Chili SPC 200NIS
+Pepper SPC 200NIS
+Curry SPC 300NIS
+zesty SPC 300NIS
+open 2 yuval,veg Completed
+order 1 Error: Table does not exist or is not open
+order 2 Completed
+restore Error: No backup available
+status 0 Completed
+status 1 Completed
+status 2 Completed
+menu Completed
+Error: Table does not exist or is not open
+yuval ordered Potato
+yuval ordered Orange
+Table 0 status: closed
+Table 1 status: closed
+Table 2 status: open
+Customers:
+0 yuval
+Orders:
+Potato 40NIS 0
+Orange 20NIS 0
+Potato 40NIS 0
+Orange 20NIS 0
+Current Bill: 120NIS
+Table 0 status: closed
+Table 1 status: closed
+Table 2 status: open
+Customers:
+0 yuval
+Orders:
+Potato 40NIS 0
+Orange 20NIS 0
+Current Bill: 60NIS
+Error: Table does not exist or is not open
+yuval ordered Potato
+yuval ordered Orange
+Error: Cannot move customer
+Table 0 status: closed
+Table 1 status: closed
+Table 2 status: open
+Customers:
+0 yuval
+Orders:
+Potato 40NIS 0
+Orange 20NIS 0
+Potato 40NIS 0
+Orange 20NIS 0
+Current Bill: 120NIS
+Error: Table does not exist or is not open
+Table 1 status: closed
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Current Bill: 0NIS
+yuval ordered Curry
+noam ordered Beer
+assaf ordered Potato
+assaf ordered Orange
+itzik ordered Water
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Current Bill: 420NIS
+yuval ordered Water
+noam ordered Wine
+assaf ordered Potato
+assaf ordered Orange
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 540NIS
+yuval ordered Water
+noam ordered Wisky
+assaf ordered Potato
+assaf ordered Orange
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 660NIS
+yuval ordered Water
+noam ordered Tirosh
+assaf ordered Potato
+assaf ordered Orange
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Tirosh 60NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 790NIS
+yuval ordered Water
+assaf ordered Potato
+assaf ordered Orange
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Tirosh 60NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 860NIS
+yuval ordered Water
+assaf ordered Potato
+assaf ordered Orange
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Tirosh 60NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 930NIS
+yuval ordered Water
+assaf ordered Potato
+assaf ordered Orange
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Tirosh 60NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 1000NIS
+yuval ordered Water
+assaf ordered Potato
+assaf ordered Orange
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Tirosh 60NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 1070NIS
+yuval ordered Water
+assaf ordered Potato
+assaf ordered Orange
+open 2 yuval,veg Completed
+order 1 Error: Table does not exist or is not open
+order 2 Completed
+restore Error: No backup available
+status 0 Completed
+status 1 Completed
+status 2 Completed
+menu Completed
+log Completed
+backup Completed
+backup Completed
+backup Completed
+restore Completed
+status 0 Completed
+status 1 Completed
+status 2 Completed
+order 1 Error: Table does not exist or is not open
+order 2 Completed
+move 2 1 0 Error: Cannot move customer
+status 0 Completed
+status 1 Completed
+status 2 Completed
+close 1 Error: Table does not exist or is not open
+status 1 Completed
+open 0 yuval,spc noam,alc assaf,veg itzik,chp Completed
+status 0 Completed
+order 0 Completed
+status 0 Completed
+order 0 Completed
+status 0 Completed
+order 0 Completed
+status 0 Completed
+order 0 Completed
+status 0 Completed
+order 0 Completed
+status 0 Completed
+order 0 Completed
+status 0 Completed
+order 0 Completed
+status 0 Completed
+order 0 Completed
+status 0 Completed
+order 0 Completed
+Error: Cannot move customer
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Tirosh 60NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 1140NIS
+Table 1 status: closed
+Error: Cannot move customer
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Tirosh 60NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 1140NIS
+Table 4 status: closed
+Error: Cannot move customer
+Error: Cannot move customer
+Table 0 status: open
+Customers:
+1 yuval
+2 noam
+3 assaf
+4 itzik
+Orders:
+Curry 300NIS 1
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Water 10NIS 1
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Tirosh 60NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 1
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 1140NIS
+Table 1 status: open
+Customers:
+5 temp
+Orders:
+Current Bill: 0NIS
+Table 0 status: open
+Customers:
+2 noam
+3 assaf
+4 itzik
+Orders:
+Beer 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Wine 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Wisky 50NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Tirosh 60NIS 2
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 760NIS
+Table 1 status: open
+Customers:
+5 temp
+1 yuval
+Orders:
+Curry 300NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Current Bill: 380NIS
+Table 0 status: open
+Customers:
+3 assaf
+4 itzik
+Orders:
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 550NIS
+Table 1 status: open
+Customers:
+5 temp
+1 yuval
+2 noam
+Orders:
+Curry 300NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Beer 50NIS 2
+Wine 50NIS 2
+Wisky 50NIS 2
+Tirosh 60NIS 2
+Current Bill: 590NIS
+Error: Cannot move customer
+Table 0 status: open
+Customers:
+3 assaf
+4 itzik
+Orders:
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 550NIS
+Table 1 status: open
+Customers:
+5 temp
+1 yuval
+2 noam
+Orders:
+Curry 300NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Beer 50NIS 2
+Wine 50NIS 2
+Wisky 50NIS 2
+Tirosh 60NIS 2
+Current Bill: 590NIS
+Error: Cannot move customer
+Table 0 status: open
+Customers:
+3 assaf
+4 itzik
+Orders:
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 550NIS
+Table 1 status: open
+Customers:
+5 temp
+1 yuval
+2 noam
+Orders:
+Curry 300NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Beer 50NIS 2
+Wine 50NIS 2
+Wisky 50NIS 2
+Tirosh 60NIS 2
+Current Bill: 590NIS
+Error: Cannot move customer
+Table 0 status: open
+Customers:
+3 assaf
+4 itzik
+Orders:
+Potato 40NIS 3
+Orange 20NIS 3
+Water 10NIS 4
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Potato 40NIS 3
+Orange 20NIS 3
+Current Bill: 550NIS
+Table 1 status: open
+Customers:
+5 temp
+1 yuval
+2 noam
+Orders:
+Curry 300NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Water 10NIS 1
+Beer 50NIS 2
+Wine 50NIS 2
+Wisky 50NIS 2
+Tirosh 60NIS 2
+Current Bill: 590NIS
+Table 2 status: open
+Customers:
+0 yuval
+Orders:
+Potato 40NIS 0
+Orange 20NIS 0
+Potato 40NIS 0
+Orange 20NIS 0
+Current Bill: 120NIS
+Table 0 was closed. Bill 550NIS
+Table 1 was closed. Bill 590NIS
+Table 2 was closed. Bill 120NIS
