@@ -127,19 +127,26 @@ std::vector<int> SpicyCustomer::order(const std::vector<Dish> &menu) {
     if(!orderedAlready)
     {
         for (int i = 0; i < (int)menu.size(); i++) {
-            if (((menu[i].getType()==SPC) && ((foodId==-1 )|| (menu[i].getPrice() > foodPrice)) || ((menu[i].getPrice() == foodPrice) & (foodId > menu[i].getId()))))
+            if (menu[i].getType()==SPC) {
+             if((foodId==-1 ) || (menu[i].getPrice() > foodPrice) || ((menu[i].getPrice() == foodPrice) & (foodId > menu[i].getId())))
             {  foodId = menu[i].getId(); foodPrice = menu[i].getPrice();}
+            }
         }
         if(foodId!=-1)
         {orderedAlready=true;return std::vector<int>(1,foodId);}
+        else
+            return std::vector<int>();
 
     }
     //ordered already
     else{
         for (int i = 0; i < (int)menu.size(); i++) {
-            if (((menu[i].getType()==BVG )&& ((foodId==-1) || (menu[i].getPrice() < foodPrice)) || ((menu[i].getPrice() == foodPrice) & (foodId > menu[i].getId()))))
+            if (menu[i].getType()==BVG ) {
+            if((foodId==-1) || (menu[i].getPrice() < foodPrice) || ((menu[i].getPrice() == foodPrice) & (foodId > menu[i].getId())))
             {  foodId = menu[i].getId(); foodPrice = menu[i].getPrice();}
+            }
         }
+
 
         if(foodId!=-1)
         return std::vector<int>(1,foodId);
@@ -183,6 +190,7 @@ bool AlchoholicCustomer::Ordered(int dishId) {
         if(ALCOrdered[i]==dishId)
             return true;
     }
+    return false;
 }
 //Alchoholic Customer order strategy: orders the cheapest alchoholic BVG in the menu that he hasnt ordered before
 std::vector<int> AlchoholicCustomer::order(const std::vector<Dish> &menu) {
